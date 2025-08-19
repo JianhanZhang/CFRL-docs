@@ -1,0 +1,191 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Example Workflows &mdash; CFRL 0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=2709fde1"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Interface" href="../interface/index.html" />
+    <link rel="prev" title="Tabular Trajectory Data" href="../inputs_and_outputs/tabular_trajectory_data.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            CFRL
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Introduction</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../introduction/getting_started.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../introduction/faq.html">FAQ</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Inputs and Outputs</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../inputs_and_outputs/data_requirements.html">Data Requirements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../inputs_and_outputs/trajectory_arrays.html">Trajectory Arrays</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../inputs_and_outputs/tabular_trajectory_data.html">Tabular Trajectory Data</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Example Workflows</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#preprocessing-only">Preprocessing Only</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#policy-learning-only">Policy Learning Only</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#assessing-preprocessors-using-synthetic-data">Assessing Preprocessors Using Synthetic Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#assessing-policies-using-real-data">Assessing Policies Using Real Data</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Interface</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../interface/index.html">Interface</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Customizations</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../customizations/custom_preprocessors.html">Custom Preprocessors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../customizations/custom_agents.html">Custom Agents</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">CFRL</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Example Workflows</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/tutorials/example_workflows.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="example-workflows">
+<span id="id1"></span><h1>Example Workflows<a class="headerlink" href="#example-workflows" title="Link to this heading"></a></h1>
+<p>This section demonstrates some major workflows that can be performed by CFRL.</p>
+<section id="preprocessing-only">
+<h2>Preprocessing Only<a class="headerlink" href="#preprocessing-only" title="Link to this heading"></a></h2>
+<img alt="../_images/preprocessing_only_workflow.png" src="../_images/preprocessing_only_workflow.png" />
+<p>In this workflow, CFRL takes in an offline trajectory and then preprocesses the offline trajectory
+using <code class="code docutils literal notranslate"><span class="pre">SyntheticPreprocessor</span></code>. The final output of the workflow is the preprocessed (debiased)
+offline trajectory. This workflow is appropriate when the user does not want to train policies using
+CFRL. Instead, the user can take the preprocessed trajectory to train a counterfactually fair policy
+using another reinforcement learning library or application that better fits their needs.</p>
+<p><strong>Code:</strong> A detailed code demonstration of this workflow can be found
+<a class="reference external" href="https://github.com/JianhanZhang/CFRL/blob/main/examples/preprocessing_only_workflow.ipynb">here</a>.</p>
+</section>
+<section id="policy-learning-only">
+<h2>Policy Learning Only<a class="headerlink" href="#policy-learning-only" title="Link to this heading"></a></h2>
+<img alt="../_images/policy_learning_only_workflow.png" src="../_images/policy_learning_only_workflow.png" />
+<p>In this workflow, CFRL takes in an offline trajectory and then preprocesses the offline trajectory
+using <code class="code docutils literal notranslate"><span class="pre">SequentialPreprocessor</span></code>. After that, the preprocessed trajectory is passed into
+<code class="code docutils literal notranslate"><span class="pre">FQI</span></code> to train a counterfactually fair policy, which is the final output of the workflow. This
+workflow is appropriate if the user wants to train a policy using CFRL. The trained policy can be
+further evaluated on its value and counterfactual fairness, which is discussed in detail in the
+“Assessing Policies Using Real Data” workflow later in this section.</p>
+<p><strong>Code:</strong> A detailed code demonstration of this workflow can be found
+<a class="reference external" href="https://github.com/JianhanZhang/CFRL/blob/main/examples/policy_learning_only_workflow.ipynb">here</a>.</p>
+</section>
+<section id="assessing-preprocessors-using-synthetic-data">
+<h2>Assessing Preprocessors Using Synthetic Data<a class="headerlink" href="#assessing-preprocessors-using-synthetic-data" title="Link to this heading"></a></h2>
+<img alt="../_images/synthetic_data_workflow.png" src="../_images/synthetic_data_workflow.png" />
+<p>In this workflow, CFRL first uses <code class="code docutils literal notranslate"><span class="pre">sample_trajectory()</span></code> to sample a trajectory from a
+<code class="code docutils literal notranslate"><span class="pre">SyntheticEnvironment</span></code> whose transition rules are pre-specified. It then preprocesses the
+sampled trajectory using some <a class="reference internal" href="../customizations/custom_preprocessors.html#custom-preprocessors"><span class="std std-ref">custom preprocessor</span></a> defined by the user.
+After that, the preprocessed trajectory is passed into <code class="code docutils literal notranslate"><span class="pre">FQI</span></code> to train a policy, which is then
+assessed using synthetic data via <code class="code docutils literal notranslate"><span class="pre">evaluate_reward_through_simulation()</span></code> and
+<code class="code docutils literal notranslate"><span class="pre">evaluate_fairness_through_simulation()</span></code>. The final output of the workflow is the policy trained
+on the preprocessed data as well as its estimated value and counterfactual fairness metric. This
+workflow is appropriate when the user wants to examine the impact of some trajectory preprocessing
+method on the value and counterfactual fairness of the trained policy.</p>
+<p><strong>Code:</strong> A detailed code demonstration of this workflow can be found
+<a class="reference external" href="https://github.com/JianhanZhang/CFRL/blob/main/examples/synthetic_data_workflow.ipynb">here</a>.</p>
+</section>
+<section id="assessing-policies-using-real-data">
+<h2>Assessing Policies Using Real Data<a class="headerlink" href="#assessing-policies-using-real-data" title="Link to this heading"></a></h2>
+<img alt="../_images/real_data_workflow.png" src="../_images/real_data_workflow.png" />
+<p>In this workflow, CFRL takes in an offline trajectory and then preprocesses the offline trajectory
+using <code class="code docutils literal notranslate"><span class="pre">SequentialPreprocessor</span></code>. After that, the preprocessed trajectory is passed into
+<code class="code docutils literal notranslate"><span class="pre">FQI</span></code> to train a counterfactually fair policy, which is then assessed using
+<code class="code docutils literal notranslate"><span class="pre">evaluate_reward_through_fqe()</span></code> and <code class="code docutils literal notranslate"><span class="pre">evaluate_fairness_through_model()</span></code> based on a
+<code class="code docutils literal notranslate"><span class="pre">SimulatedEnvironment</span></code> that mimics the transition rules of the true environment underlying the
+training trajectory. The final output of the workflow is the policy trained on the preprocessed data
+as well as its estimated value and counterfactual fairness metric. This workflow is appropriate when the
+user is interested in knowing the value and counterfactual fairness achieved by the trained policy when
+interacting with the true underlying environment.</p>
+<p><strong>Code:</strong> A detailed code demonstration of this workflow can be found
+<a class="reference external" href="https://github.com/JianhanZhang/CFRL/blob/main/examples/real_data_workflow.ipynb">here</a>.</p>
+<p><strong>Conceptual Explanation:</strong> A step-by-step conceptual explanation of this workflow can be found
+<a class="reference external" href="https://github.com/JianhanZhang/CFRL/blob/main/examples/real_data_workflow_description.pdf">here</a>.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../inputs_and_outputs/tabular_trajectory_data.html" class="btn btn-neutral float-left" title="Tabular Trajectory Data" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../interface/index.html" class="btn btn-neutral float-right" title="Interface" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, The CFRL Team.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

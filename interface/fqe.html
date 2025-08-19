@@ -1,0 +1,275 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FQE &mdash; CFRL 0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=2709fde1"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Evaluation" href="evaluation.html" />
+    <link rel="prev" title="Agents" href="agents.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            CFRL
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Introduction</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../introduction/getting_started.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../introduction/faq.html">FAQ</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Inputs and Outputs</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../inputs_and_outputs/data_requirements.html">Data Requirements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../inputs_and_outputs/trajectory_arrays.html">Trajectory Arrays</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../inputs_and_outputs/tabular_trajectory_data.html">Tabular Trajectory Data</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/example_workflows.html">Example Workflows</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Interface</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Interface</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="reader.html">Reader</a></li>
+<li class="toctree-l2"><a class="reference internal" href="preprocessor.html">Preprocessor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="environment.html">Environment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="agents.html">Agents</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">FQE</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#cfrl.fqe.FQE"><code class="docutils literal notranslate"><span class="pre">FQE</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#cfrl.fqe.FQE.__init__"><code class="docutils literal notranslate"><span class="pre">FQE.__init__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#cfrl.fqe.FQE.evaluate"><code class="docutils literal notranslate"><span class="pre">FQE.evaluate()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#cfrl.fqe.FQE.fit"><code class="docutils literal notranslate"><span class="pre">FQE.fit()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#cfrl.fqe.f_ua_default"><code class="docutils literal notranslate"><span class="pre">f_ua_default()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="evaluation.html">Evaluation</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Customizations</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../customizations/custom_preprocessors.html">Custom Preprocessors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../customizations/custom_agents.html">Custom Agents</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">CFRL</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">Interface</a></li>
+      <li class="breadcrumb-item active">FQE</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/interface/fqe.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="fqe">
+<h1>FQE<a class="headerlink" href="#fqe" title="Link to this heading"></a></h1>
+<p>This module implements the fitted Q evaluation algorithm for offline policy evaluation.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">cfrl</span> <span class="kn">import</span> <span class="n">fqe</span>
+</pre></div>
+</div>
+<dl class="py class" id="module-cfrl.fqe">
+<dt class="sig sig-object py" id="cfrl.fqe.FQE">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cfrl.fqe.</span></span><span class="sig-name descname"><span class="pre">FQE</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">num_actions</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">policy</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="agents.html#cfrl.agents.Agent" title="cfrl.agents.Agent"><span class="pre">Agent</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">model_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="s"><span class="pre">'lm'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'nn'</span></span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hidden_dims</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">[32]</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">learning_rate</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0.1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">epochs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">500</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gamma</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0.9</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cfrl.fqe.FQE" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Implementation of the fitted Q evaluation (FQE) algorithm.</p>
+<p>FQE can be used to estimate the value of a policy using offline data.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="cfrl.fqe.FQE.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">num_actions</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">policy</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="agents.html#cfrl.agents.Agent" title="cfrl.agents.Agent"><span class="pre">Agent</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">model_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="s"><span class="pre">'lm'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'nn'</span></span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hidden_dims</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">[32]</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">learning_rate</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0.1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">epochs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">500</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gamma</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0.9</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#cfrl.fqe.FQE.__init__" title="Link to this definition"></a></dt>
+<dd><dl class="simple">
+<dt>Args: </dt><dd><dl class="simple">
+<dt>num_actions (int): </dt><dd><p>The total number of legit actions.</p>
+</dd>
+<dt>policy (Agent): </dt><dd><p>The policy to be evaluated.</p>
+</dd>
+<dt>model_type (str): </dt><dd><p>The type of the model used for learning the Q function. Can 
+be “lm” (polynomial regression) or “nn” (neural network). 
+<em>Currently, only ‘nn’ is supported.</em></p>
+</dd>
+<dt>hidden_dims (list[int], optional): </dt><dd><p>The hidden dimensions of the neural network. This 
+argument is not used if <code class="code docutils literal notranslate"><span class="pre">model_type=&quot;lm&quot;</span></code>.</p>
+</dd>
+<dt>learning_rate (int or float, optional): </dt><dd><p>The learning rate of the neural network. This 
+argument is not used if <code class="code docutils literal notranslate"><span class="pre">model_type=&quot;lm&quot;</span></code>.</p>
+</dd>
+<dt>epochs (int, optional): </dt><dd><p>The number of training epochs for the neural network. This 
+argument is not used if <code class="code docutils literal notranslate"><span class="pre">model_type=&quot;lm&quot;</span></code>.</p>
+</dd>
+<dt>gamma (int or float, optional): </dt><dd><p>The discount factor for the cumulative discounted reward 
+in the objective function.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="cfrl.fqe.FQE.evaluate">
+<span class="sig-name descname"><span class="pre">evaluate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">zs:</span> <span class="pre">list</span> <span class="pre">|</span> <span class="pre">~numpy.ndarray,</span> <span class="pre">states:</span> <span class="pre">list</span> <span class="pre">|</span> <span class="pre">~numpy.ndarray,</span> <span class="pre">actions:</span> <span class="pre">list</span> <span class="pre">|</span> <span class="pre">~numpy.ndarray,</span> <span class="pre">f_ua:</span> <span class="pre">~typing.Callable[[int],</span> <span class="pre">int]</span> <span class="pre">=</span> <span class="pre">&lt;function</span> <span class="pre">f_ua_default&gt;</span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">ndarray</span></span></span><a class="headerlink" href="#cfrl.fqe.FQE.evaluate" title="Link to this definition"></a></dt>
+<dd><p>Estimate the value of the policy.</p>
+<p>It uses the FQE algorithm and the input offline trajectory to evaluate the policy of 
+interest.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><dl class="simple">
+<dt>zs (list or np.ndarray): </dt><dd><p>The observed sensitive attributes of each individual 
+in the offline trajectory used for evaluation. It should be a 2D list or array 
+following the Sensitive Attributes Format.</p>
+</dd>
+<dt>states (list or np.ndarray): </dt><dd><p>The state trajectory used for evaluation. It should be 
+a 3D list or array following the Full-trajectory States Format.</p>
+</dd>
+<dt>actions (list or np.ndarray): </dt><dd><p>The action trajectory used for evaluation, often generated using a behavior 
+policy. It should be a 2D list or array following the Full-trajectory Actions Format.</p>
+</dd>
+<dt>f_ua (Callable, optional): </dt><dd><p>A rule to generate exogenous variables for each individual’s 
+actions during evaluation. It should be a 2D function whose argument list, argument 
+names, and return type exactly match those of <cite>f_ua_default</cite>.</p>
+</dd>
+</dl>
+</dd>
+<dt>Returns: </dt><dd><dl class="simple">
+<dt>Y (np.ndarray): </dt><dd><p>A vector containing multiple estimates of the value of the policy of 
+interest. It is an array with shape (N*T, ) where N is the number of individuals in 
+the input offline trajectory and T is the total number of transitions in the input 
+offline trajectory.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="cfrl.fqe.FQE.fit">
+<span class="sig-name descname"><span class="pre">fit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">zs:</span> <span class="pre">list</span> <span class="pre">|</span> <span class="pre">~numpy.ndarray,</span> <span class="pre">states:</span> <span class="pre">list</span> <span class="pre">|</span> <span class="pre">~numpy.ndarray,</span> <span class="pre">actions:</span> <span class="pre">list</span> <span class="pre">|</span> <span class="pre">~numpy.ndarray,</span> <span class="pre">rewards:</span> <span class="pre">list</span> <span class="pre">|</span> <span class="pre">~numpy.ndarray,</span> <span class="pre">max_iter:</span> <span class="pre">int</span> <span class="pre">=</span> <span class="pre">1000,</span> <span class="pre">f_ua:</span> <span class="pre">~typing.Callable[[int],</span> <span class="pre">int]</span> <span class="pre">=</span> <span class="pre">&lt;function</span> <span class="pre">f_ua_default&gt;</span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#cfrl.fqe.FQE.fit" title="Link to this definition"></a></dt>
+<dd><p>Fit the FQE.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><dl class="simple">
+<dt>zs (list or np.ndarray): </dt><dd><p>The observed sensitive attributes of each individual 
+in the training data. It should be a 2D list or array following the Sensitive 
+Attributes Format.</p>
+</dd>
+<dt>states (list or np.ndarray): </dt><dd><p>The state trajectory used for training. It should be 
+a 3D list or array following the Full-trajectory States Format.</p>
+</dd>
+<dt>actions (list or np.ndarray): </dt><dd><p>The action trajectory used for training, often generated using a behavior 
+policy. It should be a 2D list or array following the Full-trajectory Actions 
+Format.</p>
+</dd>
+<dt>rewards (list or np.ndarray): </dt><dd><p>The reward trajectory used for training. It should be 
+a 2D list or array following the Full-trajectory Rewards Format.</p>
+</dd>
+<dt>max_iter (int, optional): </dt><dd><p>The number of iterations for learning the Q function.</p>
+</dd>
+<dt>f_ua (Callable, optional): </dt><dd><p>A rule to generate exogenous variables for each individual’s 
+actions during training. It should be a function whose argument list, argument names, 
+and return type exactly match those of <code class="code docutils literal notranslate"><span class="pre">f_ua_default</span></code>.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="cfrl.fqe.f_ua_default">
+<span class="sig-prename descclassname"><span class="pre">cfrl.fqe.</span></span><span class="sig-name descname"><span class="pre">f_ua_default</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">N</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">ndarray</span></span></span><a class="headerlink" href="#cfrl.fqe.f_ua_default" title="Link to this definition"></a></dt>
+<dd><p>Generate exogenous variables for the actions from a uniform distribution between 0 and 1.</p>
+<dl class="simple">
+<dt>Args: </dt><dd><dl class="simple">
+<dt>N (int): </dt><dd><p>The total number of individuals for whom the exogenous variables will 
+be generated.</p>
+</dd>
+</dl>
+</dd>
+<dt>Returns: </dt><dd><dl class="simple">
+<dt>ua (np.ndarray): </dt><dd><p>The generated exogenous variables. It is a (N, 1) array 
+where each entry is sampled from a uniform distribution between 0 and 1.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="agents.html" class="btn btn-neutral float-left" title="Agents" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="evaluation.html" class="btn btn-neutral float-right" title="Evaluation" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, The CFRL Team.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

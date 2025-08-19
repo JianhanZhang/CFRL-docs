@@ -1,0 +1,319 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Trajectory Arrays &mdash; CFRL 0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=2709fde1"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Tabular Trajectory Data" href="tabular_trajectory_data.html" />
+    <link rel="prev" title="Data Requirements" href="data_requirements.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            CFRL
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Introduction</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../introduction/getting_started.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../introduction/faq.html">FAQ</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Inputs and Outputs</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="data_requirements.html">Data Requirements</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Trajectory Arrays</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#sensitive-attributes-format">Sensitive Attributes Format</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#single-time-states-format">Single-time States Format</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#full-trajectory-states-format">Full-trajectory States Format</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#single-time-actions-format">Single-time Actions Format</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#full-trajectory-actions-format">Full-trajectory Actions Format</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#single-time-rewards-format">Single-time Rewards Format</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#full-trajectory-rewards-format">Full-trajectory Rewards Format</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="tabular_trajectory_data.html">Tabular Trajectory Data</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/example_workflows.html">Example Workflows</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Interface</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../interface/index.html">Interface</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Customizations</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../customizations/custom_preprocessors.html">Custom Preprocessors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../customizations/custom_agents.html">Custom Agents</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">CFRL</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Trajectory Arrays</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/inputs_and_outputs/trajectory_arrays.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="trajectory-arrays">
+<span id="id1"></span><h1>Trajectory Arrays<a class="headerlink" href="#trajectory-arrays" title="Link to this heading"></a></h1>
+<p>In CFRL, a trajectory refers to the set of collected observed tuples
+<span class="math notranslate nohighlight">\(\{(z_i, s_{i0}, a_{i0}, r_{i0}, s_{i1}, \dots, s_{i,T-1}, a_{i,T-1}, r_{i,T-1}, s_{iT}): i=1,\dots,N\}\)</span>
+describing the sensitive attribute, state, action, and reward of each individual (or subject) at each
+time step. Each <span class="math notranslate nohighlight">\(t=0,\dots,T\)</span> is called a time step, and the observed tuple
+<span class="math notranslate nohighlight">\((s_{it}, a_{it}, r_{it}, s_{i,t+1})\)</span> is called the transition for individual <span class="math notranslate nohighlight">\(i\)</span> at time
+step <span class="math notranslate nohighlight">\(t\)</span>. Let <span class="math notranslate nohighlight">\(N\)</span> be the total number of individuals and <span class="math notranslate nohighlight">\(T\)</span> be the total number of
+transitions of each individual.</p>
+<p>This section introduces Trajectory Arrays, which is how trajectories are represented in CFRL.
+Any trajectory satisfying the <a class="reference internal" href="data_requirements.html#data-requirements"><span class="std std-ref">data requirements</span></a> can be represented by
+Trajectory Arrays. The trajectory inputs and outputs of CFRL functions and classes are all in the
+form of Trajectory Arrays. To convert trajectory data from a tabular format to Trajectory Arrays or
+from Trajectory Arrays to a tabular format, see <a class="reference internal" href="tabular_trajectory_data.html#tabular-trajectory-data"><span class="std std-ref">Tabular Trajectory Data</span></a>.</p>
+<p>The sensitive attributes, states, actions, and rewards in a trajectory are represented by
+Trajectory Arrays of different formats, which are introduced below.</p>
+<section id="sensitive-attributes-format">
+<h2>Sensitive Attributes Format<a class="headerlink" href="#sensitive-attributes-format" title="Link to this heading"></a></h2>
+<p>A Trajectory Array in the Sensitive Attribute Format is used to store the observed sensitive
+attributes of each individual in the trajectory. It is a 2D list or array with shape <code class="code docutils literal notranslate"><span class="pre">(N,</span> <span class="pre">zdim)</span></code>
+where <code class="code docutils literal notranslate"><span class="pre">zdim</span></code> is the number of components in the sensitive attribute vector. The (i, j)-th
+entry of the list or array represents the j-th component of the observed sensitive attribute of the
+i-th individual. Note that if the sensitive attribute is univariate, then a Trajectory Array in the
+Sensitive Attribute Format should have shape <code class="code docutils literal notranslate"><span class="pre">(N,</span> <span class="pre">1)</span></code> rather than <code class="code docutils literal notranslate"><span class="pre">(N,)</span></code>.</p>
+<p>For example, consider a trajectory dataset with 3 individuals where the sensitive attribute is
+bivariate. Then the sensitive attributes of this trajectory can be represented in the Sensitive
+Attribute Format as</p>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(z_1^1\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(z_1^2\)</span></p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(z_2^1\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(z_2^2\)</span></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(z_3^1\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(z_3^2\)</span></p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="single-time-states-format">
+<h2>Single-time States Format<a class="headerlink" href="#single-time-states-format" title="Link to this heading"></a></h2>
+<p>A Trajectory Array in the Single-time States Attribute Format is used to store the state
+of each individual in the trajectory at a single time step. It is a 2D list or array with
+shape <code class="code docutils literal notranslate"><span class="pre">(N,</span> <span class="pre">xdim)</span></code> where <code class="code docutils literal notranslate"><span class="pre">xdim</span></code> is the number of components in the state vector. The
+(i, j)-th entry of the list or array represents the j-th component of the state variable of the
+i-th individual at the given time step. Note that if the state vector is univariate, then a
+Trajectory Array in the Single-time States Format should have shape <code class="code docutils literal notranslate"><span class="pre">(N,</span> <span class="pre">1)</span></code> rather than
+<code class="code docutils literal notranslate"><span class="pre">(N,)</span></code>.</p>
+<p>For example, consider a trajectory dataset with 3 individuals where the state variable is
+bivariate. Then the states of this trajectory at some time step <span class="math notranslate nohighlight">\(t\)</span> can be represented in the
+Single-time States Format as</p>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(x_{1t}^1\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(x_{1t}^2\)</span></p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(x_{2t}^1\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(x_{2t}^2\)</span></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(x_{3t}^1\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(x_{3t}^2\)</span></p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="full-trajectory-states-format">
+<h2>Full-trajectory States Format<a class="headerlink" href="#full-trajectory-states-format" title="Link to this heading"></a></h2>
+<p>A Trajectory Array in the Full-trajectory States Format is used to store the state
+of each individual in the trajectory at all time steps. It is a 3D list or array with
+shape <code class="code docutils literal notranslate"><span class="pre">(N,</span> <span class="pre">T+1,</span> <span class="pre">xdim)</span></code> where <code class="code docutils literal notranslate"><span class="pre">xdim</span></code> is the number of components in the state vector. The
+(i, j, k)-th entry of the list or array represents the k-th component of the state variable of the
+i-th individual at the j-th time step. Note that if the state vector is univariate, then a Trajectory
+Array in the Single-time States Format should have shape <code class="code docutils literal notranslate"><span class="pre">(N,</span> <span class="pre">T+1,</span> <span class="pre">1)</span></code> rather than <code class="code docutils literal notranslate"><span class="pre">(N,</span> <span class="pre">T+1)</span></code>.</p>
+<p>For example, consider a trajectory dataset with 3 individuals and 3 transitions where the state
+variable is bivariate. Then the states of this trajectory at all time steps can be represented in the
+Full-trajectory States Format as</p>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\([x_{10}^1, x_{10}^2]\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\([x_{11}^1, x_{11}^2]\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\([x_{12}^1, x_{12}^2]\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\([x_{13}^1, x_{13}^2]\)</span></p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\([x_{20}^1, x_{20}^2]\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\([x_{21}^1, x_{21}^2]\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\([x_{22}^1, x_{22}^2]\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\([x_{23}^1, x_{23}^2]\)</span></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\([x_{30}^1, x_{30}^2]\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\([x_{31}^1, x_{31}^2]\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\([x_{32}^1, x_{32}^2]\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\([x_{33}^1, x_{33}^2]\)</span></p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="single-time-actions-format">
+<h2>Single-time Actions Format<a class="headerlink" href="#single-time-actions-format" title="Link to this heading"></a></h2>
+<p>A Trajectory Array in the Single-time Actions Format is used to store the action
+of each individual in the trajectory at a single time step. It is a 1D list or array with
+shape <code class="code docutils literal notranslate"><span class="pre">(N,)</span></code>. The i-th entry of the list or array represents action of the i-th individual at
+the given time step.</p>
+<p>For example, consider a trajectory dataset with 3 individuals. Then the actions of this trajectory at
+some time step <span class="math notranslate nohighlight">\(t\)</span> can be represented in the Single-time Actions Format as</p>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(a_{1t}\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(a_{2t}\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(a_{3t}\)</span></p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="full-trajectory-actions-format">
+<h2>Full-trajectory Actions Format<a class="headerlink" href="#full-trajectory-actions-format" title="Link to this heading"></a></h2>
+<p>A Trajectory Array in the Full-trajectory Actions Format is used to store the action
+of each individual in the trajectory at all time steps. It is a 2D list or array with
+shape <code class="code docutils literal notranslate"><span class="pre">(N,</span> <span class="pre">T)</span></code>. The (i, j)-th entry of the list or array represents the action of the
+i-th individual at the j-th time step.</p>
+<p>For example, consider a trajectory dataset with 3 individuals and 3 transitions. Then the actions
+of this trajectory at all time steps can be represented in the Full-trajectory Actions Format as</p>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(a_{10}\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(a_{11}\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(a_{12}\)</span></p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(a_{20}\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(a_{21}\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(a_{22}\)</span></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(a_{30}\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(a_{31}\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(a_{32}\)</span></p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="single-time-rewards-format">
+<h2>Single-time Rewards Format<a class="headerlink" href="#single-time-rewards-format" title="Link to this heading"></a></h2>
+<p>A Trajectory Array in the Single-time Rewards Format is used to store the reward
+of each individual in the trajectory at a single time step. It is a 1D list or array with
+shape <code class="code docutils literal notranslate"><span class="pre">(N,)</span></code>. The i-th entry of the list or array represents reward of the i-th individual at
+the given time step.</p>
+<p>For example, consider a trajectory dataset with 3 individuals. Then the rewards of this trajectory at
+some time step <span class="math notranslate nohighlight">\(t\)</span> can be represented in the Single-time Rewards Format as</p>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(r_{1t}\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(r_{2t}\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(r_{3t}\)</span></p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="full-trajectory-rewards-format">
+<h2>Full-trajectory Rewards Format<a class="headerlink" href="#full-trajectory-rewards-format" title="Link to this heading"></a></h2>
+<p>A Trajectory Array in the Full-trajectory Rewards Format is used to store the reward
+of each individual in the trajectory at all time steps. It is a 2D list or array with
+shape <code class="code docutils literal notranslate"><span class="pre">(N,</span> <span class="pre">T)</span></code>. The (i, j)-th entry of the list or array represents the reward of the
+i-th individual at the j-th time step.</p>
+<p>For example, consider a trajectory dataset with 3 individuals and 3 transitions. Then the rewards
+of this trajectory at all time steps can be represented in the Full-trajectory Rewards Format as</p>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(r_{10}\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(r_{11}\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(r_{12}\)</span></p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(r_{20}\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(r_{21}\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(r_{22}\)</span></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(r_{30}\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(r_{31}\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(r_{32}\)</span></p></td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="data_requirements.html" class="btn btn-neutral float-left" title="Data Requirements" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="tabular_trajectory_data.html" class="btn btn-neutral float-right" title="Tabular Trajectory Data" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, The CFRL Team.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

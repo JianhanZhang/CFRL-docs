@@ -1,0 +1,217 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Getting Started &mdash; CFRL 0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=2709fde1"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="FAQ" href="faq.html" />
+    <link rel="prev" title="CFRL documentation" href="../index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            CFRL
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Introduction</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Getting Started</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#installation">Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#a-brief-introduction-to-counterfactual-fairness">A Brief Introduction to Counterfactual Fairness</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#key-functionalities">Key Functionalities</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#high-level-design">High-level Design</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="faq.html">FAQ</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Inputs and Outputs</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../inputs_and_outputs/data_requirements.html">Data Requirements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../inputs_and_outputs/trajectory_arrays.html">Trajectory Arrays</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../inputs_and_outputs/tabular_trajectory_data.html">Tabular Trajectory Data</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/example_workflows.html">Example Workflows</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Interface</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../interface/index.html">Interface</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Customizations</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../customizations/custom_preprocessors.html">Custom Preprocessors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../customizations/custom_agents.html">Custom Agents</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">About CFRL</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../about_cfrl/the_cfrl_team.html">The CFRL Team</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">CFRL</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Getting Started</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/introduction/getting_started.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="getting-started">
+<h1>Getting Started<a class="headerlink" href="#getting-started" title="Link to this heading"></a></h1>
+<section id="installation">
+<h2>Installation<a class="headerlink" href="#installation" title="Link to this heading"></a></h2>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>cfrl
+</pre></div>
+</div>
+</section>
+<section id="a-brief-introduction-to-counterfactual-fairness">
+<h2>A Brief Introduction to Counterfactual Fairness<a class="headerlink" href="#a-brief-introduction-to-counterfactual-fairness" title="Link to this heading"></a></h2>
+<p>Counterfactual fairness is one variation of fairness metrics. However, unlike well-known group
+fairness metrics such as demographic parity and equal opportunity, counterfactual fairness defines
+fairness based on causal reasoning and enforces it at the individual level. In short, a reinforcement
+learning policy is counterfactually fair if, at every time step, it would assign the same decisions
+with the same probabilities for an individual had the individual belong to a different subgroup
+defined by some sensitive attribute (such as race and gender). At its core, counterfactual fairness
+views the observed states and rewards as biased proxies of the (unobserved) true underlying states
+and rewards, where the bias is often a result of the observed sensitive attribute. Thus, to ensure
+counterfactual fairness, we want the policy to be based on the true underlying states and rewards
+rather than their biased proxies.</p>
+<p>We refer interested readers to <a class="reference external" href="https://arxiv.org/abs/1703.06856">Kusner et al. (2017)</a> for a detailed
+discussion of counterfactual fairness in the single-stage predictions setting, and to
+<a class="reference external" href="https://arxiv.org/abs/2501.06366">Wang et al. (2025)</a> for a detailed discussion of counterfactual
+fairness in the reinforcement learning setting.</p>
+</section>
+<section id="key-functionalities">
+<h2>Key Functionalities<a class="headerlink" href="#key-functionalities" title="Link to this heading"></a></h2>
+<p>CFRL is designed with two main functionalities:</p>
+<p>1. Provide algorithms that enforce counterfactual fairness for reinforcement learning policies.
+The current version of CFRL implements the sequential data preprocessing algorithm proposed by
+<a class="reference external" href="https://arxiv.org/abs/2501.06366">Wang et al. (2025)</a> for offline reinforcement learning. The
+algorithm takes in an offline RL trajectory and outputs a preprocessed, bias-free trajectory. The
+preprocessed trajectory can then be passed to any existing offline reinforcement learning algorithms
+for training, and the learned policy should be approximately counterfactually fair.</p>
+<p>2. Provide a platform to evaluate RL policies based on counterfactual fairness. After passing in
+their policy and a trajectory dataset from the target environment, users can assess how well their
+policies perform in the target environment in terms of the discounted cumulative reward and
+counterfactual fairness metric.</p>
+</section>
+<section id="high-level-design">
+<h2>High-level Design<a class="headerlink" href="#high-level-design" title="Link to this heading"></a></h2>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 15.0%" />
+<col style="width: 85.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Module</p></th>
+<th class="head"><p>Functionalities</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="code docutils literal notranslate"><span class="pre">reader</span></code></p></td>
+<td><p>Implements functions that read tabular trajectory data from either a <code class="code docutils literal notranslate"><span class="pre">.csv</span></code> file or a <code class="code docutils literal notranslate"><span class="pre">pandas.DataFrame</span></code> into a format required by <code class="code docutils literal notranslate"><span class="pre">CFRL</span></code> (<a class="reference internal" href="../inputs_and_outputs/trajectory_arrays.html#trajectory-arrays"><span class="std std-ref">Trajectory Arrays</span></a>). Also implements functions that export trajectory data to either a <code class="code docutils literal notranslate"><span class="pre">.csv</span></code> file or a <code class="code docutils literal notranslate"><span class="pre">pandas.DataFrame</span></code>.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="code docutils literal notranslate"><span class="pre">preprocessor</span></code></p></td>
+<td><p>Implements the data preprocessing algorithm introduced in Wang et al. (2025).</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="code docutils literal notranslate"><span class="pre">agents</span></code></p></td>
+<td><p>Implements a fitted Q-iteration (FQI) algorithm, which learns RL policies and makes decisions based on the learned policy. Users can also pass a preprocessor to the FQI; in this case, the FQI will be able to take in unpreprocessed trajectories, internally preprocess the input trajectories, and directly output counterfactually fair policies.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="code docutils literal notranslate"><span class="pre">environment</span></code></p></td>
+<td><p>Implements a synthetic environment that produces synthetic data as well as a simulated environment that simulates the transition dynamics of the environment underlying some real-world RL trajectory data. Also implements functions for sampling trajectories from the synthetic and simulated environments.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="code docutils literal notranslate"><span class="pre">fqe</span></code></p></td>
+<td><p>Implements a fitted Q-evaluation (FQE) algorithm, which can be used to evaluate the value of a policy.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="code docutils literal notranslate"><span class="pre">evaluation</span></code></p></td>
+<td><p>Implements functions that evaluate the value and counterfactual fairness of a policy. Depending on the user’s needs, the evaluation can be done either in a synthetic environment or in a simulated environment.</p></td>
+</tr>
+</tbody>
+</table>
+<img alt="../_images/workflow_chart_cropped.png" src="../_images/workflow_chart_cropped.png" />
+<p>A general CFRL workflow is as follows: First, simulate a trajectory using <code class="code docutils literal notranslate"><span class="pre">environment</span></code> or read
+in a trajectory using <code class="code docutils literal notranslate"><span class="pre">reader</span></code>. Then, train a preprocessor using <code class="code docutils literal notranslate"><span class="pre">preprocessor</span></code> to remove
+the bias in the trajectory data. After that, pass the preprocessed trajectory into the FQI algorithm in
+<code class="code docutils literal notranslate"><span class="pre">agents</span></code> to learn a counterfactually fair policy. Finally, use functions in <code class="code docutils literal notranslate"><span class="pre">evaluation</span></code> to
+evaluate the value and counterfactual fairness of the trained policy. See the
+<a class="reference internal" href="../tutorials/example_workflows.html#example-workflows"><span class="std std-ref">“Example Workflows”</span></a> section for more detailed workflow examples.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../index.html" class="btn btn-neutral float-left" title="CFRL documentation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="faq.html" class="btn btn-neutral float-right" title="FAQ" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, The CFRL Team.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

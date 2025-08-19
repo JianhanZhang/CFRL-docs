@@ -1,0 +1,927 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Environment &mdash; CFRL 0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=2709fde1"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Agents" href="agents.html" />
+    <link rel="prev" title="Preprocessor" href="preprocessor.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            CFRL
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Introduction</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../introduction/getting_started.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../introduction/faq.html">FAQ</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Inputs and Outputs</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../inputs_and_outputs/data_requirements.html">Data Requirements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../inputs_and_outputs/trajectory_arrays.html">Trajectory Arrays</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../inputs_and_outputs/tabular_trajectory_data.html">Tabular Trajectory Data</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/example_workflows.html">Example Workflows</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Interface</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Interface</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="reader.html">Reader</a></li>
+<li class="toctree-l2"><a class="reference internal" href="preprocessor.html">Preprocessor</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Environment</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#cfrl.environment.SimulatedEnvironment"><code class="docutils literal notranslate"><span class="pre">SimulatedEnvironment</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#cfrl.environment.SimulatedEnvironment.__init__"><code class="docutils literal notranslate"><span class="pre">SimulatedEnvironment.__init__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#cfrl.environment.SimulatedEnvironment.fit"><code class="docutils literal notranslate"><span class="pre">SimulatedEnvironment.fit()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#cfrl.environment.SimulatedEnvironment.reset"><code class="docutils literal notranslate"><span class="pre">SimulatedEnvironment.reset()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#cfrl.environment.SimulatedEnvironment.step"><code class="docutils literal notranslate"><span class="pre">SimulatedEnvironment.step()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#cfrl.environment.SyntheticEnvironment"><code class="docutils literal notranslate"><span class="pre">SyntheticEnvironment</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#cfrl.environment.SyntheticEnvironment.__init__"><code class="docutils literal notranslate"><span class="pre">SyntheticEnvironment.__init__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#cfrl.environment.SyntheticEnvironment.reset"><code class="docutils literal notranslate"><span class="pre">SyntheticEnvironment.reset()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#cfrl.environment.SyntheticEnvironment.step"><code class="docutils literal notranslate"><span class="pre">SyntheticEnvironment.step()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#cfrl.environment.estimate_counterfactual_trajectories_from_data"><code class="docutils literal notranslate"><span class="pre">estimate_counterfactual_trajectories_from_data()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#cfrl.environment.f_errors_rewards_default"><code class="docutils literal notranslate"><span class="pre">f_errors_rewards_default()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#cfrl.environment.f_errors_states_default"><code class="docutils literal notranslate"><span class="pre">f_errors_states_default()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#cfrl.environment.f_rt_default"><code class="docutils literal notranslate"><span class="pre">f_rt_default()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#cfrl.environment.f_ua_default"><code class="docutils literal notranslate"><span class="pre">f_ua_default()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#cfrl.environment.f_ur_default"><code class="docutils literal notranslate"><span class="pre">f_ur_default()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#cfrl.environment.f_ux_default"><code class="docutils literal notranslate"><span class="pre">f_ux_default()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#cfrl.environment.f_x0_default"><code class="docutils literal notranslate"><span class="pre">f_x0_default()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#cfrl.environment.f_xt_default"><code class="docutils literal notranslate"><span class="pre">f_xt_default()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#cfrl.environment.sample_counterfactual_trajectories"><code class="docutils literal notranslate"><span class="pre">sample_counterfactual_trajectories()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#cfrl.environment.sample_simulated_env_trajectory"><code class="docutils literal notranslate"><span class="pre">sample_simulated_env_trajectory()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#cfrl.environment.sample_trajectory"><code class="docutils literal notranslate"><span class="pre">sample_trajectory()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="agents.html">Agents</a></li>
+<li class="toctree-l2"><a class="reference internal" href="fqe.html">FQE</a></li>
+<li class="toctree-l2"><a class="reference internal" href="evaluation.html">Evaluation</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Customizations</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../customizations/custom_preprocessors.html">Custom Preprocessors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../customizations/custom_agents.html">Custom Agents</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">CFRL</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">Interface</a></li>
+      <li class="breadcrumb-item active">Environment</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/interface/environment.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="environment">
+<h1>Environment<a class="headerlink" href="#environment" title="Link to this heading"></a></h1>
+<p>This module implements environments and sample functions that could be used to generate trajectories.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">cfrl</span> <span class="kn">import</span> <span class="n">environment</span>
+</pre></div>
+</div>
+<dl class="py class" id="module-cfrl.environment">
+<dt class="sig sig-object py" id="cfrl.environment.SimulatedEnvironment">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cfrl.environment.</span></span><span class="sig-name descname"><span class="pre">SimulatedEnvironment</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">num_actions</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">state_model_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="s"><span class="pre">'lm'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'nn'</span></span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'nn'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">state_model_hidden_dims</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">[32,</span> <span class="pre">32]</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">reward_model_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="s"><span class="pre">'lm'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'nn'</span></span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'nn'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">reward_model_hidden_dims</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">[32,</span> <span class="pre">32]</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_action_onehot</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">epochs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1000</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">batch_size</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">128</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">learning_rate</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0.001</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_early_stopping</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">test_size</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0.2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">early_stopping_patience</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">10</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">early_stopping_min_delta</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0.01</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">enforce_min_max</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cfrl.environment.SimulatedEnvironment" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Env</span></code></p>
+<p>Implementation of an environment that simulates the transition dynamics of real environments.</p>
+<p>A <code class="code docutils literal notranslate"><span class="pre">SimulatedEnvironment</span></code> learns transition dynamics from data and makes transitions following 
+the learned dynamics. <code class="code docutils literal notranslate"><span class="pre">SimulatedEnvironment</span></code> inherits from <code class="code docutils literal notranslate"><span class="pre">gymnasium.Env</span></code> and follows 
+an interface similar to <code class="code docutils literal notranslate"><span class="pre">gymnasium.Env</span></code>.</p>
+<p>Currently, <code class="code docutils literal notranslate"><span class="pre">SyntheticEnvironment</span></code> assumes the environment is continuous.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="cfrl.environment.SimulatedEnvironment.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">num_actions</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">state_model_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="s"><span class="pre">'lm'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'nn'</span></span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'nn'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">state_model_hidden_dims</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">[32,</span> <span class="pre">32]</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">reward_model_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="s"><span class="pre">'lm'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'nn'</span></span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'nn'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">reward_model_hidden_dims</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">[32,</span> <span class="pre">32]</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_action_onehot</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">epochs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1000</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">batch_size</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">128</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">learning_rate</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0.001</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_early_stopping</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">test_size</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0.2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">early_stopping_patience</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">10</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">early_stopping_min_delta</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0.01</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">enforce_min_max</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#cfrl.environment.SimulatedEnvironment.__init__" title="Link to this definition"></a></dt>
+<dd><dl class="simple">
+<dt>Args: </dt><dd><dl class="simple">
+<dt>num_actions (int): </dt><dd><p>The total number of legit actions.</p>
+</dd>
+<dt>state_model_type (str, optional): </dt><dd><p>The type of the model used for learning the transition 
+dynamics of the states. Can be “lm” (polynomial regression) or “nn” (neural network).
+<em>Currently, only ‘nn’ is supported.</em></p>
+</dd>
+<dt>state_model_hidden_dims (list[int], optional): </dt><dd><p>The hidden dimensions of the neural network  
+for learning the transition dynamics of the states. This argument is not used if 
+<code class="code docutils literal notranslate"><span class="pre">state_model_type=&quot;lm&quot;</span></code>.</p>
+</dd>
+<dt>reward_model_type (str, optional): </dt><dd><p>The type of the model used for learning the transition 
+dynamics of the rewards. Can be “lm” (polynomial regression) or “nn” (neural network).
+<em>Currently, only ‘nn’ is supported.</em></p>
+</dd>
+<dt>reward_model_hidden_dims (list[int], optional): </dt><dd><p>The hidden dimensions of the neural network  
+for learning the transition dynamics of the rewards. This argument is not used if 
+<code class="code docutils literal notranslate"><span class="pre">reward_model_type=&quot;lm&quot;</span></code>.</p>
+</dd>
+<dt>is_action_onehot (bool, optional): </dt><dd><p>When set to <code class="code docutils literal notranslate"><span class="pre">True</span></code>, the actions will be one-hot encoded internally.</p>
+</dd>
+<dt>epochs (int, optional): </dt><dd><p>The number of training epochs for the neural networks. Applies to  
+both the network for states and the network for rewards, if applicable. This argument 
+is not used if both <code class="code docutils literal notranslate"><span class="pre">state_model_type</span></code> and <code class="code docutils literal notranslate"><span class="pre">reward_model_type</span></code> are set to 
+<code class="code docutils literal notranslate"><span class="pre">&quot;lm&quot;</span></code>.</p>
+</dd>
+<dt>batch_size (int, optional): </dt><dd><p>The batch size of the neural networks. Applies to both the network 
+for states and the network for rewards, if applicable. This argument is not used if both 
+<code class="code docutils literal notranslate"><span class="pre">state_model_type</span></code> and <code class="code docutils literal notranslate"><span class="pre">reward_model_type</span></code> are set to <code class="code docutils literal notranslate"><span class="pre">&quot;lm&quot;</span></code>.</p>
+</dd>
+<dt>learning_rate (int or float, optional): </dt><dd><p>The learning rate of the neural networks. Applies to 
+both the network for states and the network for rewards, if applicable. This argument is 
+not used if both <code class="code docutils literal notranslate"><span class="pre">state_model_type</span></code> and <code class="code docutils literal notranslate"><span class="pre">reward_model_type</span></code> are set to 
+<code class="code docutils literal notranslate"><span class="pre">&quot;lm&quot;</span></code>.</p>
+</dd>
+<dt>is_early_stopping (bool, optional): </dt><dd><p>When set to <code class="code docutils literal notranslate"><span class="pre">True</span></code>, will enforce early stopping 
+during neural network training. Applies to both the network for states and the network for 
+rewards, if applicable. This argument is not used if both <code class="code docutils literal notranslate"><span class="pre">state_model_type</span></code> and 
+<code class="code docutils literal notranslate"><span class="pre">reward_model_type</span></code> are set to <code class="code docutils literal notranslate"><span class="pre">&quot;lm&quot;</span></code>.</p>
+</dd>
+<dt>test_size (int or float, optional): </dt><dd><p>An int or float between 0 and 1 (inclusive) that 
+specifies the proportion of the full data that is used as the test set for early stopping. 
+Applies to both the network for states and the network for rewards, if applicable. This 
+argument is not used if <code class="code docutils literal notranslate"><span class="pre">is_early_stopping=False</span></code> or if both <code class="code docutils literal notranslate"><span class="pre">state_model_type</span></code> 
+and <code class="code docutils literal notranslate"><span class="pre">reward_model_type</span></code> are set to <code class="code docutils literal notranslate"><span class="pre">&quot;lm&quot;</span></code>.</p>
+</dd>
+<dt>early_stopping_patience (int, optional): </dt><dd><p>The number of consecutive epochs with 
+barely-decreasing loss needed for training to be early stopped. Applies to both the network 
+for states and the network for rewards, if applicable. This argument is not used if 
+<code class="code docutils literal notranslate"><span class="pre">is_early_stopping=False</span></code> or if both <code class="code docutils literal notranslate"><span class="pre">state_model_type</span></code> and 
+<code class="code docutils literal notranslate"><span class="pre">reward_model_type</span></code> are set to <code class="code docutils literal notranslate"><span class="pre">&quot;lm&quot;</span></code>.</p>
+</dd>
+<dt>early_stopping_min_delta (int for float, optional): </dt><dd><p>The minimum amount of decrease 
+in the loss so that the round is not considered barely-decreasing by the early 
+stopping mechanism. Applies to both the network for states and the network for rewards,  
+if applicable. This argument is not used if <code class="code docutils literal notranslate"><span class="pre">is_early_stopping=False</span></code> or if both 
+<code class="code docutils literal notranslate"><span class="pre">state_model_type</span></code> and <code class="code docutils literal notranslate"><span class="pre">reward_model_type</span></code> are set to <code class="code docutils literal notranslate"><span class="pre">&quot;lm&quot;</span></code>.</p>
+</dd>
+<dt>enforce_min_max (bool, optional): </dt><dd><p>When set to <code class="code docutils literal notranslate"><span class="pre">True</span></code>, each component of the output 
+states will be clipped to the maximum and minimum value of the corresponding 
+component in the training data. Similarly, the output rewards will also be clipped 
+to the maximum and minimum value of the rewards in the training data.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="cfrl.environment.SimulatedEnvironment.fit">
+<span class="sig-name descname"><span class="pre">fit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">zs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">states</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">actions</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rewards</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">ndarray</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#cfrl.environment.SimulatedEnvironment.fit" title="Link to this definition"></a></dt>
+<dd><p>Fit the transition dynamics of the MDP underlying the training data.</p>
+<p>Internally, the <code class="code docutils literal notranslate"><span class="pre">fit()</span></code> function fits two separate models, one for the states and the 
+other for the rewards.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><dl class="simple">
+<dt>zs (list or np.ndarray): </dt><dd><p>The observed sensitive attributes of each individual 
+in the training data. It should be a list or array following the Sensitive 
+Attributes Format.</p>
+</dd>
+<dt>states (list or np.ndarray): </dt><dd><p>The state trajectory used for training. It should be 
+a list or array following the Full-trajectory States Format.</p>
+</dd>
+<dt>actions (list or np.ndarray): </dt><dd><p>The action trajectory used for training. It should be 
+a list or array following the Full-trajectory Actions Format.</p>
+</dd>
+<dt>rewards (list or np.ndarray): </dt><dd><p>The reward trajectory used for training. It should be 
+a list or array following the Full-trajectory Rewards Format.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="cfrl.environment.SimulatedEnvironment.reset">
+<span class="sig-name descname"><span class="pre">reset</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">z</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">errors_states</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seed</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">ndarray</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">None</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#cfrl.environment.SimulatedEnvironment.reset" title="Link to this definition"></a></dt>
+<dd><p>Reset the environment to an initial state.</p>
+<p>Users must call <code class="code docutils literal notranslate"><span class="pre">reset()</span></code> first before calling <code class="code docutils literal notranslate"><span class="pre">step()</span></code>.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><dl class="simple">
+<dt>z (list or np.ndarray): </dt><dd><p>The observed sensitive attributes of each individual 
+in the trajectory. It should be a 2D list or array following the Sensitive 
+Attributes Format.</p>
+</dd>
+<dt>errors_states (np.ndarray): </dt><dd><p>The exogenous variables for states <span class="math notranslate nohighlight">\(U_{X_0}\)</span> 
+for each individual in the trajectory. It should be a 2D list or array with 
+shape (N, xdim) where N is the total number of individuals in the trajectory 
+and xdim is the number of components of the state vector. When set to <code class="code docutils literal notranslate"><span class="pre">None</span></code>, 
+the function will generate the exogenous variables following a multivariate 
+standard normal distribution with xdim mutually independent components.</p>
+</dd>
+<dt>seed (int, optional): </dt><dd><p>The random seed used for the transition.</p>
+</dd>
+</dl>
+</dd>
+<dt>Returns: </dt><dd><dl class="simple">
+<dt>observation (np.ndarray): </dt><dd><p>The initial states generated following the learned 
+transition dynamics. It is a 2D array following the Single-time States Format.</p>
+</dd>
+<dt>info (<code class="code docutils literal notranslate"><span class="pre">None</span></code>): </dt><dd><p>Exists to be compatible with the interface of <code class="code docutils literal notranslate"><span class="pre">gymnasium.Env</span></code>. 
+It is always <code class="code docutils literal notranslate"><span class="pre">None</span></code>.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="cfrl.environment.SimulatedEnvironment.step">
+<span class="sig-name descname"><span class="pre">step</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">action</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">errors_states</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">errors_rewards</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seed</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">ndarray</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">ndarray</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="k"><span class="pre">False</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="k"><span class="pre">False</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#cfrl.environment.SimulatedEnvironment.step" title="Link to this definition"></a></dt>
+<dd><p>Generate the states at some time <span class="math notranslate nohighlight">\(t &gt; 0\)</span> following the default transition rule.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><dl class="simple">
+<dt>action (list or np.ndarray): </dt><dd><p>The actions of each individual in the trajectrory. It 
+should be a 1D list or array following the Full-trajectory Actions Format.</p>
+</dd>
+<dt>errors_states (list or np.ndarray): </dt><dd><p>The exogenous variables for states (<span class="math notranslate nohighlight">\(U_{X_t}\)</span>) 
+for each individual in the trajectory. It should be a 2D list or array with shape 
+(N, xdim) where N is the total number of individuals in the trajectory and xdim is 
+the number of components of the state vector. When set to <code class="code docutils literal notranslate"><span class="pre">None</span></code>, the function 
+will generate the exogenous variables following a multivariate standard normal 
+distribution with xdim mutually independent components.</p>
+</dd>
+<dt>errors_rewards (list or np.ndarray): </dt><dd><p>The exogenous variables for rewards (<span class="math notranslate nohighlight">\(U_{R_{t-1}}\)</span>) 
+for each individual in the trajectory. It should be a 2D list or array with shape 
+(N, 1) where N is the total number of individuals in the trajectory. When set to 
+<code class="code docutils literal notranslate"><span class="pre">None</span></code>, the function will generate the exogenous variables following a standard 
+normal distribution.</p>
+</dd>
+<dt>seed (int, optional): </dt><dd><p>The random seed used for the transition.</p>
+</dd>
+</dl>
+</dd>
+<dt>Returns: </dt><dd><dl class="simple">
+<dt>observation (np.ndarray): </dt><dd><p>The states transitioned to following the pre-specified 
+transition rule. It is a 2D array following the Single-time States Format.</p>
+</dd>
+<dt>reward (np.ndarray): </dt><dd><p>The rewards generated following the pre-specified transition 
+rule. It is a 1D array following the Single-time Rewards Format.</p>
+</dd>
+<dt>terminated (<code class="code docutils literal notranslate"><span class="pre">False</span></code>): </dt><dd><p>Whether the environment reaches a terminal state. It is always 
+<code class="code docutils literal notranslate"><span class="pre">False</span></code> because <code class="code docutils literal notranslate"><span class="pre">SimulatedEnvironment</span></code> assumes the environment is 
+continuing.</p>
+</dd>
+<dt>truncated (<code class="code docutils literal notranslate"><span class="pre">False</span></code>): </dt><dd><p>Whether some truncation condition is satisfied. It is always 
+<code class="code docutils literal notranslate"><span class="pre">False</span></code> because <code class="code docutils literal notranslate"><span class="pre">SimulatedEnvironment</span></code> currenly does not support 
+specifying truncation conditions.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="cfrl.environment.SyntheticEnvironment">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cfrl.environment.</span></span><span class="sig-name descname"><span class="pre">SyntheticEnvironment</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">state_dim:</span> <span class="pre">int,</span> <span class="pre">z_coef:</span> <span class="pre">int</span> <span class="pre">|</span> <span class="pre">float</span> <span class="pre">=</span> <span class="pre">1,</span> <span class="pre">f_x0:</span> <span class="pre">~typing.Callable[[~numpy.ndarray,</span> <span class="pre">~numpy.ndarray,</span> <span class="pre">int</span> <span class="pre">|</span> <span class="pre">float],</span> <span class="pre">~numpy.ndarray]</span> <span class="pre">=</span> <span class="pre">&lt;function</span> <span class="pre">f_x0_default&gt;,</span> <span class="pre">f_xt:</span> <span class="pre">~typing.Callable[[~numpy.ndarray,</span> <span class="pre">~numpy.ndarray,</span> <span class="pre">~numpy.ndarray,</span> <span class="pre">~numpy.ndarray,</span> <span class="pre">int</span> <span class="pre">|</span> <span class="pre">float],</span> <span class="pre">~numpy.ndarray]</span> <span class="pre">=</span> <span class="pre">&lt;function</span> <span class="pre">f_xt_default&gt;,</span> <span class="pre">f_rt:</span> <span class="pre">~typing.Callable[[~numpy.ndarray,</span> <span class="pre">~numpy.ndarray,</span> <span class="pre">~numpy.ndarray,</span> <span class="pre">~numpy.ndarray,</span> <span class="pre">int</span> <span class="pre">|</span> <span class="pre">float],</span> <span class="pre">~numpy.ndarray]</span> <span class="pre">=</span> <span class="pre">&lt;function</span> <span class="pre">f_rt_default&gt;</span></em><span class="sig-paren">)</span><a class="headerlink" href="#cfrl.environment.SyntheticEnvironment" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Env</span></code></p>
+<p>Implementation of an environment that makes transitions following a pre-specified rule.</p>
+<p><code class="code docutils literal notranslate"><span class="pre">SyntheticEnvironment</span></code> inherits from <code class="code docutils literal notranslate"><span class="pre">gymnasium.Env</span></code> and follows an interface similar 
+to <code class="code docutils literal notranslate"><span class="pre">gymnasium.Env</span></code>. Users can also specify the transition rule in the constructor of 
+<code class="code docutils literal notranslate"><span class="pre">SyntheticEnvironment</span></code>.</p>
+<p>If no transition rule is specified, <code class="code docutils literal notranslate"><span class="pre">SyntheticEnvironment</span></code> will use a set of default 
+transition rules (<code class="code docutils literal notranslate"><span class="pre">f_x0_default</span></code>, <code class="code docutils literal notranslate"><span class="pre">f_xt_default</span></code>, and <code class="code docutils literal notranslate"><span class="pre">f_rt_default</span></code>) that 
+assumes the sensitive attribute vector and the state vector are both univariate. More precisely, 
+the default transition rule is</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}X_0 =&amp; -0.3 + 1.0 \delta Z + U_{X_0} \\
+X_t =&amp; -0.3 + 1.0 \delta (Z - 0.5) + 0.5 X_{t-1} + 0.4 (A_{t-1} - 0.5) \\
+    &amp;+ 0.3 X_{t-1} (A_{t-1} - 0.5) + 0.3 \delta X_{t-1} (Z - 0.5) 
+    + 0.4 \delta (Z - 0.5) (A_{t-1} - 0.5) + U_{X_t} \\
+R_t =&amp; -0.3 + 0.3 X_t + 0.5 \delta Z + 0.5 A_t + 0.2 \delta X_t Z 
+    + 0.7 X_t A_t - 1.0 \delta Z A_t\end{split}\]</div>
+<p>Currently, <code class="code docutils literal notranslate"><span class="pre">SyntheticEnvironment</span></code> assumes the environment is continuing.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="cfrl.environment.SyntheticEnvironment.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">state_dim:</span> <span class="pre">int,</span> <span class="pre">z_coef:</span> <span class="pre">int</span> <span class="pre">|</span> <span class="pre">float</span> <span class="pre">=</span> <span class="pre">1,</span> <span class="pre">f_x0:</span> <span class="pre">~typing.Callable[[~numpy.ndarray,</span> <span class="pre">~numpy.ndarray,</span> <span class="pre">int</span> <span class="pre">|</span> <span class="pre">float],</span> <span class="pre">~numpy.ndarray]</span> <span class="pre">=</span> <span class="pre">&lt;function</span> <span class="pre">f_x0_default&gt;,</span> <span class="pre">f_xt:</span> <span class="pre">~typing.Callable[[~numpy.ndarray,</span> <span class="pre">~numpy.ndarray,</span> <span class="pre">~numpy.ndarray,</span> <span class="pre">~numpy.ndarray,</span> <span class="pre">int</span> <span class="pre">|</span> <span class="pre">float],</span> <span class="pre">~numpy.ndarray]</span> <span class="pre">=</span> <span class="pre">&lt;function</span> <span class="pre">f_xt_default&gt;,</span> <span class="pre">f_rt:</span> <span class="pre">~typing.Callable[[~numpy.ndarray,</span> <span class="pre">~numpy.ndarray,</span> <span class="pre">~numpy.ndarray,</span> <span class="pre">~numpy.ndarray,</span> <span class="pre">int</span> <span class="pre">|</span> <span class="pre">float],</span> <span class="pre">~numpy.ndarray]</span> <span class="pre">=</span> <span class="pre">&lt;function</span> <span class="pre">f_rt_default&gt;</span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#cfrl.environment.SyntheticEnvironment.__init__" title="Link to this definition"></a></dt>
+<dd><dl class="simple">
+<dt>Args:</dt><dd><dl class="simple">
+<dt>state_dim (int): </dt><dd><p>The number of components in the state vector.</p>
+</dd>
+<dt>z_coef (int or float, optional): </dt><dd><p>The strength of impact of the sensitive attribute on the states  
+and rewards. It is the <span class="math notranslate nohighlight">\(\delta\)</span> in the specification of the default transition 
+rule.</p>
+</dd>
+<dt>f_x0 (Callable, optional): </dt><dd><p>Transition rule for generating the state at time <span class="math notranslate nohighlight">\(t = 0\)</span>. It 
+should be a function whose argument list, argument names, and return type exactly 
+match those of <code class="code docutils literal notranslate"><span class="pre">f_x0_default</span></code>.</p>
+</dd>
+<dt>f_xt (Callable, optional): </dt><dd><p>Transition rule for generating the state at time <span class="math notranslate nohighlight">\(t &gt; 0\)</span>. It 
+should be a function whose argument list, argument names, and return type exactly 
+match those of <code class="code docutils literal notranslate"><span class="pre">f_xt_default</span></code>.</p>
+</dd>
+<dt>f_rt (Callable, optional): </dt><dd><p>Transition rule for generating the state at time <span class="math notranslate nohighlight">\(t &gt; 0\)</span>. It 
+should be a function whose argument list, argument names, and return type exactly 
+match those of <code class="code docutils literal notranslate"><span class="pre">f_rt_default</span></code>.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="cfrl.environment.SyntheticEnvironment.reset">
+<span class="sig-name descname"><span class="pre">reset</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">z</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ux0</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">ndarray</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">ndarray</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">None</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#cfrl.environment.SyntheticEnvironment.reset" title="Link to this definition"></a></dt>
+<dd><p>Reset the environment to an initial state.</p>
+<p>Users must call <code class="code docutils literal notranslate"><span class="pre">reset()</span></code> first before calling <code class="code docutils literal notranslate"><span class="pre">step()</span></code>.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><dl class="simple">
+<dt>z (list or np.ndarray): </dt><dd><p>The observed sensitive attributes of each individual 
+in the trajectory. It should be a 2D list or array following the Sensitive 
+Attributes Format.</p>
+</dd>
+<dt>ux0 (list or np.ndarray): </dt><dd><p>The exogenous variables (<span class="math notranslate nohighlight">\(U_{X_0}\)</span>) for each 
+individual in the trajectory. It should be a 2D list or array with shape (N, xdim) 
+where N is the total number of individuals in the trajectory and xdim is the 
+number of components of the state vector.</p>
+</dd>
+</dl>
+</dd>
+<dt>Returns: </dt><dd><dl class="simple">
+<dt>observation (np.ndarray): </dt><dd><p>The initial states generated following the pre-specified 
+transition rule. It is a 2D array following the Single-time States Format.</p>
+</dd>
+<dt>info (<code class="code docutils literal notranslate"><span class="pre">None</span></code>): </dt><dd><p>Exists to be compatible with the interface of <code class="code docutils literal notranslate"><span class="pre">gymnasium.Env</span></code>. 
+It is always <code class="code docutils literal notranslate"><span class="pre">None</span></code>.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="cfrl.environment.SyntheticEnvironment.step">
+<span class="sig-name descname"><span class="pre">step</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">action</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">uxt</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">urtm1</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">ndarray</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">ndarray</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">ndarray</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="k"><span class="pre">False</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="k"><span class="pre">False</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#cfrl.environment.SyntheticEnvironment.step" title="Link to this definition"></a></dt>
+<dd><p>Generate the states at some time <span class="math notranslate nohighlight">\(t &gt; 0\)</span> following the default transition rule.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><dl class="simple">
+<dt>action (list or np.ndarray): </dt><dd><p>The actions (<span class="math notranslate nohighlight">\(A_{t-1}\)</span>) of each individual in the trajectrory. It 
+should be a 1D list or array following the Single-time Actions Format.</p>
+</dd>
+<dt>uxt (list or np.ndarray): </dt><dd><p>The exogenous variables (<span class="math notranslate nohighlight">\(U_{X_t}\)</span>) for each 
+individual in the trajectory. It should be a 2D list or array with shape (N, xdim) 
+where N is the total number of individuals in the trajectory and xdim is the 
+number of components of the state vector.</p>
+</dd>
+<dt>urtm1 (list or np.ndarray): </dt><dd><p>The exogenous variables (<span class="math notranslate nohighlight">\(U_{R_{t-1}}\)</span>) for each 
+individual in the trajectory. It should be a 2D list or array with shape (N, 1) 
+where N is the total number of individuals in the trajectory.</p>
+</dd>
+</dl>
+</dd>
+<dt>Returns: </dt><dd><dl class="simple">
+<dt>observation (np.ndarray): </dt><dd><p>The states transitioned to following the pre-specified 
+transition rule (<span class="math notranslate nohighlight">\(X_t\)</span>). It is a 2D array following the Single-time States 
+sFormat.</p>
+</dd>
+<dt>reward (np.ndarray): </dt><dd><p>The rewards generated following the pre-specified transition 
+rule (<span class="math notranslate nohighlight">\(R_{t-1}\)</span>). It is a 1D array following the Single-time Rewards Format.</p>
+</dd>
+<dt>terminated (<code class="code docutils literal notranslate"><span class="pre">False</span></code>): </dt><dd><p>Whether the environment reaches a terminal state. It is always 
+<code class="code docutils literal notranslate"><span class="pre">False</span></code> because <code class="code docutils literal notranslate"><span class="pre">SyntheticEnvironment</span></code> assumes the environment is 
+continuing.</p>
+</dd>
+<dt>truncated (<code class="code docutils literal notranslate"><span class="pre">False</span></code>): </dt><dd><p>Whether some truncation condition is satisfied. It is always 
+<code class="code docutils literal notranslate"><span class="pre">False</span></code> because <code class="code docutils literal notranslate"><span class="pre">SyntheticEnvironment</span></code> currenly does not support 
+specifying truncation conditions.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="cfrl.environment.estimate_counterfactual_trajectories_from_data">
+<span class="sig-prename descclassname"><span class="pre">cfrl.environment.</span></span><span class="sig-name descname"><span class="pre">estimate_counterfactual_trajectories_from_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">env:</span> <span class="pre">~cfrl.environment.SimulatedEnvironment,</span> <span class="pre">zs:</span> <span class="pre">list</span> <span class="pre">|</span> <span class="pre">~numpy.ndarray,</span> <span class="pre">states:</span> <span class="pre">list</span> <span class="pre">|</span> <span class="pre">~numpy.ndarray,</span> <span class="pre">actions:</span> <span class="pre">list</span> <span class="pre">|</span> <span class="pre">~numpy.ndarray,</span> <span class="pre">policy:</span> <span class="pre">~cfrl.agents.Agent,</span> <span class="pre">f_ua:</span> <span class="pre">~typing.Callable[[int],</span> <span class="pre">~numpy.ndarray]</span> <span class="pre">=</span> <span class="pre">&lt;function</span> <span class="pre">f_ua_default&gt;,</span> <span class="pre">seed:</span> <span class="pre">int</span> <span class="pre">=</span> <span class="pre">1</span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="p"><span class="pre">...</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">ndarray</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="#cfrl.environment.SyntheticEnvironment" title="cfrl.environment.SyntheticEnvironment"><span class="pre">SyntheticEnvironment</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="agents.html#cfrl.agents.Agent" title="cfrl.agents.Agent"><span class="pre">Agent</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#cfrl.environment.estimate_counterfactual_trajectories_from_data" title="Link to this definition"></a></dt>
+<dd><p>Reconstruct the counterfactual trajectories from an observed trajectory.</p>
+<p>For each individual in the input trajectory, <code class="code docutils literal notranslate"><span class="pre">estimate_counterfactual_trajectories_from_data()</span></code> 
+reconstructs that individual’s counterfactual trajectories under different values of the sensitive 
+attribute. The sensitive attribute values used here are those that appear in <code class="code docutils literal notranslate"><span class="pre">zs</span></code>.</p>
+<p>More precisely, the counterfactual states and rewards are first estimated following the data 
+preprocessing method proposed by Wang et al. (2025), which is referenced below. <code class="code docutils literal notranslate"><span class="pre">policy</span></code> is 
+then used to generate the counterfactual action trajectories using the estimated counterfactual 
+states.</p>
+<dl>
+<dt>References: </dt><dd><aside class="footnote-list brackets">
+<aside class="footnote brackets" id="id1" role="doc-footnote">
+<span class="label"><span class="fn-bracket">[</span>2<span class="fn-bracket">]</span></span>
+<p>Wang, J., Shi, C., Piette, J.D., Loftus, J.R., Zeng, D. and Wu, Z. (2025). 
+Counterfactually Fair Reinforcement Learning via Sequential Data 
+Preprocessing. arXiv preprint arXiv:2501.06366.</p>
+</aside>
+</aside>
+</dd>
+</dl>
+<p>The counterfactual trajectories estimated using a policy can be used to compute the  
+counterfactual fairness metric of the policy.</p>
+<dl class="simple">
+<dt>Args: </dt><dd><dl class="simple">
+<dt>env (SimulatedEnvironment): </dt><dd><p>An environment that simulates the transition dynamics of the 
+MDP underlying <code class="code docutils literal notranslate"><span class="pre">zs</span></code>, <code class="code docutils literal notranslate"><span class="pre">states</span></code>, <code class="code docutils literal notranslate"><span class="pre">actions</span></code>, and <code class="code docutils literal notranslate"><span class="pre">rewards</span></code>.</p>
+</dd>
+<dt>zs (list or np.ndarray): </dt><dd><p>The observed sensitive attributes of each individual in the 
+trajectory used for estimating the counterfactual trajectories. It should be a list 
+or array following the Sensitive Attributes Format.</p>
+</dd>
+<dt>states (list or np.ndarray): </dt><dd><p>The state trajectory used for estimating the counterfactual 
+trajectories. It should be a list or array following the Full-trajectory States Format.</p>
+</dd>
+<dt>actions (list or np.ndarray): </dt><dd><p>The action trajectory used for estimating the counterfactual 
+trajectories. It should be a list or array following the Full-trajectory Actions Format.</p>
+</dd>
+<dt>policy (Agent): </dt><dd><p>The policy used to estimate the counterfactual action trajectories.</p>
+</dd>
+<dt>f_ua (Callable, optional): </dt><dd><p>A rule to generate exogenous variables for each individual’s 
+actions. It should be a function whose argument list, argument names, and return 
+type exactly match those of <code class="code docutils literal notranslate"><span class="pre">f_ua_default</span></code>.</p>
+</dd>
+<dt>seed (int, optional): </dt><dd><p>The seed used to estimate the counterfactual trajectories.</p>
+</dd>
+</dl>
+</dd>
+<dt>Returns: </dt><dd><dl class="simple">
+<dt>trajectories (dict): </dt><dd><p>The sampled counterfactual trajectories. It is a dictionary where 
+the keys are the sensitive attribute values in <code class="code docutils literal notranslate"><span class="pre">z_eval_levels</span></code> (the sensitive 
+attribute values are each converted to a tuple in the keys). The value of each key (the 
+key is denoted <code class="code docutils literal notranslate"><span class="pre">z</span></code>) is a dictionary with six keys: <cite>“Z”</cite> (value is an array whose 
+elements are all <code class="code docutils literal notranslate"><span class="pre">z</span></code>), <cite>“X”</cite> (value is the state trajectory for each individual 
+under <code class="code docutils literal notranslate"><span class="pre">z</span></code>, organized in the Full-trajectory States Format), <cite>“A”</cite> (value is an array 
+of action trajectory for each individual under <code class="code docutils literal notranslate"><span class="pre">z</span></code>, organized in the Full-trajectory 
+Actions Format), <cite>“R”</cite> (value is an array of reward trajectory for each individual under 
+<code class="code docutils literal notranslate"><span class="pre">z</span></code>, organized in the Full-trajectory Rewards Format), “env_z” (value is a copy of 
+<code class="code docutils literal notranslate"><span class="pre">env</span></code> used to generate the trajectories under <code class="code docutils literal notranslate"><span class="pre">z</span></code>, with coresponding buffer 
+memories), and “policy_z” (value is a copy of <code class="code docutils literal notranslate"><span class="pre">policy</span></code> used to generate the 
+trajectories under <code class="code docutils literal notranslate"><span class="pre">z</span></code>, with corresponding buffer memories).</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="cfrl.environment.f_errors_rewards_default">
+<span class="sig-prename descclassname"><span class="pre">cfrl.environment.</span></span><span class="sig-name descname"><span class="pre">f_errors_rewards_default</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">N</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">ndarray</span></span></span><a class="headerlink" href="#cfrl.environment.f_errors_rewards_default" title="Link to this definition"></a></dt>
+<dd><p>Generate exogenous variables for the rewards from a standard normal distribution.</p>
+<dl class="simple">
+<dt>Args: </dt><dd><dl class="simple">
+<dt>N (int): </dt><dd><p>The total number of individuals for whom the exogenous variables will 
+be generated.</p>
+</dd>
+</dl>
+</dd>
+<dt>Returns: </dt><dd><dl class="simple">
+<dt>ua (np.ndarray): </dt><dd><p>The generated exogenous variables. It is a (N, 1) array 
+where each entry is sampled from a standard normal distribution.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="cfrl.environment.f_errors_states_default">
+<span class="sig-prename descclassname"><span class="pre">cfrl.environment.</span></span><span class="sig-name descname"><span class="pre">f_errors_states_default</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">N</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">state_dim</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">ndarray</span></span></span><a class="headerlink" href="#cfrl.environment.f_errors_states_default" title="Link to this definition"></a></dt>
+<dd><p>Generate exogenous variables for the states.</p>
+<p>The exogenous variables are generated from a standard multivariate normal distribution with 
+mutually independent components.</p>
+<dl class="simple">
+<dt>Args: </dt><dd><dl class="simple">
+<dt>N (int): </dt><dd><p>The total number of individuals for whom the exogenous variables will 
+be generated.</p>
+</dd>
+<dt>state_dim (int): </dt><dd><p>The number of components in the state vector.</p>
+</dd>
+</dl>
+</dd>
+<dt>Returns: </dt><dd><dl class="simple">
+<dt>errors_states (np.ndarray): </dt><dd><p>The generated exogenous variables. It is a (N, state_dim) 
+array where each entry is sampled from a standard multivariate normal distribution 
+with mutually independent components.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="cfrl.environment.f_rt_default">
+<span class="sig-prename descclassname"><span class="pre">cfrl.environment.</span></span><span class="sig-name descname"><span class="pre">f_rt_default</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">zs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">xt</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">at</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">urtm1</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">z_coef</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">ndarray</span></span></span><a class="headerlink" href="#cfrl.environment.f_rt_default" title="Link to this definition"></a></dt>
+<dd><p>Generate the rewards at some time <span class="math notranslate nohighlight">\(t\)</span> following the default transition rule.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><dl class="simple">
+<dt>zs (list or np.ndarray): </dt><dd><p>The observed sensitive attributes of each individual 
+in the trajectory. It should be a 2D list or array following the Sensitive 
+Attributes Format.</p>
+</dd>
+<dt>xt (list or np.ndarray): </dt><dd><p>The states of each individual in the trajectory at time 
+<span class="math notranslate nohighlight">\(t\)</span>. It should be a 2D list or array following the Single-time 
+States Format.</p>
+</dd>
+<dt>at (list or np.ndarray): </dt><dd><p>The actions of each individual in the trajectrory at time 
+<span class="math notranslate nohighlight">\(t\)</span>. It should be a 1D list or array following the Single-time 
+Actions Format.</p>
+</dd>
+<dt>urt (list or np.ndarray): </dt><dd><p>The exogenous variables (<span class="math notranslate nohighlight">\(U_{R_t}\)</span>) for each 
+individual in the trajectory. It should be a 2D list or array with shape (N, 1) 
+where N is the total number of individuals in the trajectory.</p>
+</dd>
+<dt>z_coef (int or float, optional): </dt><dd><p>The strength of impact of the sensitive attribute on the states  
+and rewards. It is the <span class="math notranslate nohighlight">\(\delta\)</span> in the specification of the default transition 
+rule.</p>
+</dd>
+</dl>
+</dd>
+<dt>Returns: </dt><dd><dl class="simple">
+<dt>rt (np.ndarray): </dt><dd><p>The rewards at time <span class="math notranslate nohighlight">\(t\)</span> generated following the default 
+transition rule. It is a 2D array following the Single-time Rewards Format.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="cfrl.environment.f_ua_default">
+<span class="sig-prename descclassname"><span class="pre">cfrl.environment.</span></span><span class="sig-name descname"><span class="pre">f_ua_default</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">N</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">ndarray</span></span></span><a class="headerlink" href="#cfrl.environment.f_ua_default" title="Link to this definition"></a></dt>
+<dd><p>Generate exogenous variables for the actions from a uniform distribution between 0 and 1.</p>
+<dl class="simple">
+<dt>Args: </dt><dd><dl class="simple">
+<dt>N (int): </dt><dd><p>The total number of individuals for whom the exogenous variables will 
+be generated.</p>
+</dd>
+</dl>
+</dd>
+<dt>Returns: </dt><dd><dl class="simple">
+<dt>ua (np.ndarray): </dt><dd><p>The generated exogenous variables. It is a (N, 1) array 
+where each entry is sampled from a uniform distribution between 0 and 1.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="cfrl.environment.f_ur_default">
+<span class="sig-prename descclassname"><span class="pre">cfrl.environment.</span></span><span class="sig-name descname"><span class="pre">f_ur_default</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">N</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">ndarray</span></span></span><a class="headerlink" href="#cfrl.environment.f_ur_default" title="Link to this definition"></a></dt>
+<dd><p>Generate exogenous variables for the rewards from a standard normal distribution.</p>
+<dl class="simple">
+<dt>Args: </dt><dd><dl class="simple">
+<dt>N (int): </dt><dd><p>The total number of individuals for whom the exogenous variables will 
+be generated.</p>
+</dd>
+</dl>
+</dd>
+<dt>Returns: </dt><dd><dl class="simple">
+<dt>ur (np.ndarray): </dt><dd><p>The generated exogenous variables. It is a (N, 1) array 
+where each entry is sampled from a standard normal distribution.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="cfrl.environment.f_ux_default">
+<span class="sig-prename descclassname"><span class="pre">cfrl.environment.</span></span><span class="sig-name descname"><span class="pre">f_ux_default</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">N</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">state_dim</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">ndarray</span></span></span><a class="headerlink" href="#cfrl.environment.f_ux_default" title="Link to this definition"></a></dt>
+<dd><p>Generate exogenous variables for the states from a standard normal distribution.</p>
+<dl class="simple">
+<dt>Args: </dt><dd><dl class="simple">
+<dt>N (int): </dt><dd><p>The total number of individuals for whom the exogenous variables will 
+be generated.</p>
+</dd>
+<dt>state_dim (int): </dt><dd><p>The number of components in the state vector.</p>
+</dd>
+</dl>
+</dd>
+<dt>Returns: </dt><dd><dl class="simple">
+<dt>ux (np.ndarray): </dt><dd><p>The generated exogenous variables. It is a (N, <code class="code docutils literal notranslate"><span class="pre">state_dim</span></code>) array 
+where each entry is sampled from a standard normal distribution.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="cfrl.environment.f_x0_default">
+<span class="sig-prename descclassname"><span class="pre">cfrl.environment.</span></span><span class="sig-name descname"><span class="pre">f_x0_default</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">zs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ux0</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">z_coef</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">ndarray</span></span></span><a class="headerlink" href="#cfrl.environment.f_x0_default" title="Link to this definition"></a></dt>
+<dd><p>Generate the states at time <span class="math notranslate nohighlight">\(t = 0\)</span> following the default transition rule.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><dl class="simple">
+<dt>zs (list or np.ndarray): </dt><dd><p>The observed sensitive attributes of each individual 
+in the trajectory. It should be a 2D list or array following the Sensitive 
+Attributes Format.</p>
+</dd>
+<dt>ux0 (list or np.ndarray): </dt><dd><p>The exogenous variables (<span class="math notranslate nohighlight">\(U_{X_0}\)</span>) for each 
+individual in the trajectory. It should be a 2D list or array with shape (N, xdim) 
+where N is the total number of individuals in the trajectory and xdim is the 
+number of components of the state vector.</p>
+</dd>
+<dt>z_coef (int or float, optional): </dt><dd><p>The strength of impact of the sensitive attribute on the states  
+and rewards. It is the <span class="math notranslate nohighlight">\(\delta\)</span> in the specification of the default transition 
+rule.</p>
+</dd>
+</dl>
+</dd>
+<dt>Returns: </dt><dd><dl class="simple">
+<dt>x0 (np.ndarray): </dt><dd><p>The states at <span class="math notranslate nohighlight">\(t = 0\)</span> generated following the default 
+transition rule. It is a 2D array following the Single-time States Format.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="cfrl.environment.f_xt_default">
+<span class="sig-prename descclassname"><span class="pre">cfrl.environment.</span></span><span class="sig-name descname"><span class="pre">f_xt_default</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">zs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">xtm1</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">atm1</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">uxt</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">z_coef</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">ndarray</span></span></span><a class="headerlink" href="#cfrl.environment.f_xt_default" title="Link to this definition"></a></dt>
+<dd><p>Generate the states at some time <span class="math notranslate nohighlight">\(t &gt; 0\)</span> following the default transition rule.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><dl class="simple">
+<dt>zs (list or np.ndarray): </dt><dd><p>The observed sensitive attributes of each individual 
+in the trajectory. It should be a 2D list or array following the Sensitive 
+Attributes Format.</p>
+</dd>
+<dt>xtm1 (list or np.ndarray): </dt><dd><p>The states of each individual in the trajectory at time 
+<span class="math notranslate nohighlight">\(t - 1\)</span>. It should be a 2D list or array following the Single-time 
+States Format.</p>
+</dd>
+<dt>atm1 (list or np.ndarray): </dt><dd><p>The actions of each individual in the trajectrory at time 
+<span class="math notranslate nohighlight">\(t - 1\)</span>. It should be a 1D list or array following the Single-time 
+Actions Format.</p>
+</dd>
+<dt>uxt (list or np.ndarray): </dt><dd><p>The exogenous variables (<span class="math notranslate nohighlight">\(U_{X_t}\)</span>) for each 
+individual in the trajectory. It should be a 2D list or array with shape (N, xdim) 
+where N is the total number of individuals in the trajectory and xdim is the 
+number of components of the state vector.</p>
+</dd>
+<dt>z_coef (int or float, optional): </dt><dd><p>The strength of impact of the sensitive attribute on the states  
+and rewards. It is the <span class="math notranslate nohighlight">\(\delta\)</span> in the specification of the default transition 
+rule.</p>
+</dd>
+</dl>
+</dd>
+<dt>Returns: </dt><dd><dl class="simple">
+<dt>xt (np.ndarray): </dt><dd><p>The states at time <span class="math notranslate nohighlight">\(t\)</span> generated following the default 
+transition rule. It is a 2D array following the Single-time States Format.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="cfrl.environment.sample_counterfactual_trajectories">
+<span class="sig-prename descclassname"><span class="pre">cfrl.environment.</span></span><span class="sig-name descname"><span class="pre">sample_counterfactual_trajectories</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">env:</span> <span class="pre">~cfrl.environment.SyntheticEnvironment,</span> <span class="pre">zs:</span> <span class="pre">list</span> <span class="pre">|</span> <span class="pre">~numpy.ndarray,</span> <span class="pre">z_eval_levels:</span> <span class="pre">list</span> <span class="pre">|</span> <span class="pre">~numpy.ndarray,</span> <span class="pre">state_dim:</span> <span class="pre">int,</span> <span class="pre">T:</span> <span class="pre">int,</span> <span class="pre">policy:</span> <span class="pre">~cfrl.agents.Agent,</span> <span class="pre">f_ux:</span> <span class="pre">~typing.Callable[[int,</span> <span class="pre">int],</span> <span class="pre">~numpy.ndarray]</span> <span class="pre">=</span> <span class="pre">&lt;function</span> <span class="pre">f_ux_default&gt;,</span> <span class="pre">f_ua:</span> <span class="pre">~typing.Callable[[int],</span> <span class="pre">~numpy.ndarray]</span> <span class="pre">=</span> <span class="pre">&lt;function</span> <span class="pre">f_ua_default&gt;,</span> <span class="pre">f_ur:</span> <span class="pre">~typing.Callable[[int],</span> <span class="pre">~numpy.ndarray]</span> <span class="pre">=</span> <span class="pre">&lt;function</span> <span class="pre">f_ur_default&gt;,</span> <span class="pre">seed:</span> <span class="pre">int</span> <span class="pre">=</span> <span class="pre">1</span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="p"><span class="pre">...</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">ndarray</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="#cfrl.environment.SyntheticEnvironment" title="cfrl.environment.SyntheticEnvironment"><span class="pre">SyntheticEnvironment</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="agents.html#cfrl.agents.Agent" title="cfrl.agents.Agent"><span class="pre">Agent</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#cfrl.environment.sample_counterfactual_trajectories" title="Link to this definition"></a></dt>
+<dd><p>Sample counterfactual trajectories from some synthetic environment.</p>
+<p>To sample counterfactual trajectories, for every individual, the function simulates 
+transitions under each of the senstive attribute values specified in <code class="code docutils literal notranslate"><span class="pre">z_eval_levels</span></code> 
+while keeping the exogenous variables the same for all trajectories of the same 
+individual.</p>
+<p>The counterfactual trajectories generated by a policy can be used to compute the  
+counterfactual fairness metric of the policy.</p>
+<dl class="simple">
+<dt>Args: </dt><dd><dl class="simple">
+<dt>env (SyntheticEnvironment): </dt><dd><p>The environment to sample trajectory from.</p>
+</dd>
+<dt>zs (list or np.ndarray): </dt><dd><p>The observed sensitive attributes of each individual 
+in the trajectory that is going to be sampled. It should be a 2D list 
+or array following the Sensitive Attributes Format.</p>
+</dd>
+<dt>z_eval_levels (list or np.ndarray): </dt><dd><p>The set of values of sensitive attributes 
+under which counterfactual trajectories will be generated. For every 
+individual, the function generates a counterfactual trajectory for each of 
+the sensitive attribute values specified in this array. It should be a 2D 
+array where each row contains exactly one sensitive attribute value.</p>
+</dd>
+<dt>state_dim (int): </dt><dd><p>The number of components in the state vector.</p>
+</dd>
+<dt>T (int): </dt><dd><p>The total number of transitions in the trajectory that is to be sampled.</p>
+</dd>
+<dt>policy (Agent): </dt><dd><p>The policy used to generate actions for the trajectory.</p>
+</dd>
+<dt>f_ux (Callable, optional): </dt><dd><p>A rule to generate exogenous variables for each individual’s 
+states. It should be a function whose argument list, argument names, and return 
+type exactly match those of <code class="code docutils literal notranslate"><span class="pre">f_ux_default</span></code>.</p>
+</dd>
+<dt>f_ua (Callable, optional): </dt><dd><p>A rule to generate exogenous variables for each individual’s 
+actions. It should be a function whose argument list, argument names, and return 
+type exactly match those of <code class="code docutils literal notranslate"><span class="pre">f_ua_default</span></code>.</p>
+</dd>
+<dt>f_ur (Callable, optional): </dt><dd><p>A rule to generate exogenous variables for each individual’s 
+rewards. It should be a function whose argument list, argument names, and return 
+type exactly match those of <code class="code docutils literal notranslate"><span class="pre">f_ur_default</span></code>.</p>
+</dd>
+<dt>seed (int, optional): </dt><dd><p>The random seed used to generate the trajectories.</p>
+</dd>
+</dl>
+</dd>
+<dt>Returns: </dt><dd><dl class="simple">
+<dt>trajectories (dict): </dt><dd><p>The sampled counterfactual trajectories. It is a dictionary where 
+the keys are the sensitive attribute values in <code class="code docutils literal notranslate"><span class="pre">z_eval_levels</span></code> (the sensitive 
+attribute values are each converted to a tuple in the keys). The value of each key (the 
+key is denoted <code class="code docutils literal notranslate"><span class="pre">z</span></code>) is a dictionary with six keys: <cite>“Z”</cite> (value is an array whose 
+elements are all <code class="code docutils literal notranslate"><span class="pre">z</span></code>), <cite>“X”</cite> (value is the state trajectory for each individual 
+under <code class="code docutils literal notranslate"><span class="pre">z</span></code>, organized in the Full-trajectory States Format), <cite>“A”</cite> (value is an array 
+of action trajectory for each individual under <code class="code docutils literal notranslate"><span class="pre">z</span></code>, organized in the Full-trajectory 
+Actions Format), <cite>“R”</cite> (value is an array of reward trajectory for each individual under 
+<code class="code docutils literal notranslate"><span class="pre">z</span></code>, organized in the Full-trajectory Rewards Format), “env_z” (value is a copy of 
+<code class="code docutils literal notranslate"><span class="pre">env</span></code> used to generate the trajectories under <code class="code docutils literal notranslate"><span class="pre">z</span></code>, with coresponding buffer 
+memories), and “policy_z” (value is a copy of <code class="code docutils literal notranslate"><span class="pre">policy</span></code> used to generate the 
+trajectories under <code class="code docutils literal notranslate"><span class="pre">z</span></code>, with corresponding buffer memories).</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="cfrl.environment.sample_simulated_env_trajectory">
+<span class="sig-prename descclassname"><span class="pre">cfrl.environment.</span></span><span class="sig-name descname"><span class="pre">sample_simulated_env_trajectory</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">env:</span> <span class="pre">~cfrl.environment.SimulatedEnvironment,</span> <span class="pre">zs:</span> <span class="pre">list</span> <span class="pre">|</span> <span class="pre">~numpy.ndarray,</span> <span class="pre">state_dim:</span> <span class="pre">int,</span> <span class="pre">T:</span> <span class="pre">int,</span> <span class="pre">policy:</span> <span class="pre">~cfrl.agents.Agent,</span> <span class="pre">f_ua:</span> <span class="pre">~typing.Callable[[int],</span> <span class="pre">~numpy.ndarray]</span> <span class="pre">=</span> <span class="pre">&lt;function</span> <span class="pre">f_ua_default&gt;,</span> <span class="pre">f_errors_states:</span> <span class="pre">~typing.Callable[[int,</span> <span class="pre">int],</span> <span class="pre">~numpy.ndarray]</span> <span class="pre">=</span> <span class="pre">&lt;function</span> <span class="pre">f_errors_states_default&gt;,</span> <span class="pre">f_errors_rewards:</span> <span class="pre">~typing.Callable[[int],</span> <span class="pre">~numpy.ndarray]</span> <span class="pre">=</span> <span class="pre">&lt;function</span> <span class="pre">f_errors_rewards_default&gt;,</span> <span class="pre">seed:</span> <span class="pre">int</span> <span class="pre">=</span> <span class="pre">1</span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">ndarray</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">ndarray</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">ndarray</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">ndarray</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#cfrl.environment.sample_simulated_env_trajectory" title="Link to this definition"></a></dt>
+<dd><p>Sample a trajectory from some simulated environment.</p>
+<dl class="simple">
+<dt>Args: </dt><dd><dl class="simple">
+<dt>env (SimulatedEnvironment): </dt><dd><p>The environment to sample trajectory from.</p>
+</dd>
+<dt>zs (list or np.ndarray): </dt><dd><p>The observed sensitive attributes of each individual 
+in the trajectory that is going to be sampled. It should be a 2D list 
+or array following the Sensitive Attributes Format.</p>
+</dd>
+<dt>state_dim (int): </dt><dd><p>The number of components in the state vector.</p>
+</dd>
+<dt>T (int): </dt><dd><p>The total number of transitions in the trajectory that is to be sampled.</p>
+</dd>
+<dt>policy (Agent): </dt><dd><p>The policy used to generate actions for the trajectory.</p>
+</dd>
+<dt>f_ua (Callable, optional): </dt><dd><p>A rule to generate exogenous variables for each individual’s 
+actions. It should be a function whose argument list, argument names, and return 
+type exactly match those of <code class="code docutils literal notranslate"><span class="pre">f_ua_default</span></code>.</p>
+</dd>
+<dt>f_errors_states (Callable, optional): </dt><dd><p>A rule to generate exogenous variables for each 
+individual’s states. It should be a function whose argument list, argument names, 
+and return type exactly match those of <code class="code docutils literal notranslate"><span class="pre">f_errors_states_default</span></code>.</p>
+</dd>
+<dt>f_errors_rewards (Callable, optional): </dt><dd><p>A rule to generate exogenous variables for each 
+individual’s rewards. It should be a function whose argument list, argument names, 
+and return type exactly match those of <code class="code docutils literal notranslate"><span class="pre">f_errors_rewards_default</span></code>.</p>
+</dd>
+<dt>seed (int, optional): </dt><dd><p>The random seed used to sample the trajectory.</p>
+</dd>
+</dl>
+</dd>
+<dt>Returns: </dt><dd><dl class="simple">
+<dt>Z (np.ndarray): </dt><dd><p>The observed sensitive attributes of each individual in the sampled 
+trajectory. It is an array following the Sensitive Attributes Format.</p>
+</dd>
+<dt>X (np.ndarray): </dt><dd><p>The sampled state trajectory. It is an array following the 
+Full-trajectoriy States Format.</p>
+</dd>
+<dt>A (np.ndarray): </dt><dd><p>The sampled action trajectory. It is an array following the 
+Full-trajectory Actions Format.</p>
+</dd>
+<dt>R (np.ndarray): </dt><dd><p>The sampled reward trajectory. It is an array following the 
+Full-trajectory Rewards Format.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="cfrl.environment.sample_trajectory">
+<span class="sig-prename descclassname"><span class="pre">cfrl.environment.</span></span><span class="sig-name descname"><span class="pre">sample_trajectory</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">env:</span> <span class="pre">~cfrl.environment.SyntheticEnvironment,</span> <span class="pre">zs:</span> <span class="pre">list</span> <span class="pre">|</span> <span class="pre">~numpy.ndarray,</span> <span class="pre">state_dim:</span> <span class="pre">int,</span> <span class="pre">T:</span> <span class="pre">int,</span> <span class="pre">policy:</span> <span class="pre">~cfrl.agents.Agent,</span> <span class="pre">f_ux:</span> <span class="pre">~typing.Callable[[int,</span> <span class="pre">int],</span> <span class="pre">~numpy.ndarray]</span> <span class="pre">=</span> <span class="pre">&lt;function</span> <span class="pre">f_ux_default&gt;,</span> <span class="pre">f_ua:</span> <span class="pre">~typing.Callable[[int],</span> <span class="pre">~numpy.ndarray]</span> <span class="pre">=</span> <span class="pre">&lt;function</span> <span class="pre">f_ua_default&gt;,</span> <span class="pre">f_ur:</span> <span class="pre">~typing.Callable[[int],</span> <span class="pre">~numpy.ndarray]</span> <span class="pre">=</span> <span class="pre">&lt;function</span> <span class="pre">f_ur_default&gt;,</span> <span class="pre">seed:</span> <span class="pre">int</span> <span class="pre">=</span> <span class="pre">1</span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">ndarray</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">ndarray</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">ndarray</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">ndarray</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#cfrl.environment.sample_trajectory" title="Link to this definition"></a></dt>
+<dd><p>Sample a trajectory from some synthetic environment.</p>
+<dl class="simple">
+<dt>Args: </dt><dd><dl class="simple">
+<dt>env (SyntheticEnvironment): </dt><dd><p>The environment to sample trajectory from.</p>
+</dd>
+<dt>zs (list or np.ndarray): </dt><dd><p>The observed sensitive attributes of each individual 
+in the trajectory that is going to be sampled. It should be a 2D list 
+or array following the Sensitive Attributes Format.</p>
+</dd>
+<dt>state_dim (int): </dt><dd><p>The number of components in the state vector.</p>
+</dd>
+<dt>T (int): </dt><dd><p>The total number of transitions in the trajectory that is to be sampled.</p>
+</dd>
+<dt>policy (Agent): </dt><dd><p>The policy used to generate actions for the trajectory.</p>
+</dd>
+<dt>f_ux (Callable, optional): </dt><dd><p>A rule to generate exogenous variables for each individual’s 
+states. It should be a function whose argument list, argument names, and return 
+type exactly match those of <code class="code docutils literal notranslate"><span class="pre">f_ux_default</span></code>.</p>
+</dd>
+<dt>f_ua (Callable, optional): </dt><dd><p>A rule to generate exogenous variables for each individual’s 
+actions. It should be a function whose argument list, argument names, and return 
+type exactly match those of <code class="code docutils literal notranslate"><span class="pre">f_ua_default</span></code>.</p>
+</dd>
+<dt>f_ur (Callable, optional): </dt><dd><p>A rule to generate exogenous variables for each individual’s 
+rewards. It should be a function whose argument list, argument names, and return 
+type exactly match those of <code class="code docutils literal notranslate"><span class="pre">f_ur_default</span></code>.</p>
+</dd>
+</dl>
+</dd>
+<dt>Returns: </dt><dd><dl class="simple">
+<dt>Z (np.ndarray): </dt><dd><p>The observed sensitive attributes of each individual in the sampled 
+trajectory. It is an array following the Sensitive Attributes Format.</p>
+</dd>
+<dt>X (np.ndarray): </dt><dd><p>The sampled state trajectory. It is an array following the 
+Full-trajectoriy States Format.</p>
+</dd>
+<dt>A (np.ndarray): </dt><dd><p>The sampled action trajectory. It is an array following the 
+Full-trajectory Actions Format.</p>
+</dd>
+<dt>R (np.ndarray): </dt><dd><p>The sampled reward trajectory. It is an array following the 
+Full-trajectory Rewards Format.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="preprocessor.html" class="btn btn-neutral float-left" title="Preprocessor" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="agents.html" class="btn btn-neutral float-right" title="Agents" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, The CFRL Team.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,493 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Preprocessor &mdash; CFRL 0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=2709fde1"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Environment" href="environment.html" />
+    <link rel="prev" title="Reader" href="reader.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            CFRL
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Introduction</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../introduction/getting_started.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../introduction/faq.html">FAQ</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Inputs and Outputs</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../inputs_and_outputs/data_requirements.html">Data Requirements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../inputs_and_outputs/trajectory_arrays.html">Trajectory Arrays</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../inputs_and_outputs/tabular_trajectory_data.html">Tabular Trajectory Data</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/example_workflows.html">Example Workflows</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Interface</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Interface</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="reader.html">Reader</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Preprocessor</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#cfrl.preprocessor.Preprocessor"><code class="docutils literal notranslate"><span class="pre">Preprocessor</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#cfrl.preprocessor.Preprocessor.__init__"><code class="docutils literal notranslate"><span class="pre">Preprocessor.__init__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#cfrl.preprocessor.Preprocessor.preprocess_multiple_steps"><code class="docutils literal notranslate"><span class="pre">Preprocessor.preprocess_multiple_steps()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#cfrl.preprocessor.Preprocessor.preprocess_single_step"><code class="docutils literal notranslate"><span class="pre">Preprocessor.preprocess_single_step()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#cfrl.preprocessor.SequentialPreprocessor"><code class="docutils literal notranslate"><span class="pre">SequentialPreprocessor</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#cfrl.preprocessor.SequentialPreprocessor.__init__"><code class="docutils literal notranslate"><span class="pre">SequentialPreprocessor.__init__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#cfrl.preprocessor.SequentialPreprocessor.preprocess_multiple_steps"><code class="docutils literal notranslate"><span class="pre">SequentialPreprocessor.preprocess_multiple_steps()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#cfrl.preprocessor.SequentialPreprocessor.preprocess_single_step"><code class="docutils literal notranslate"><span class="pre">SequentialPreprocessor.preprocess_single_step()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#cfrl.preprocessor.SequentialPreprocessor.train_preprocessor"><code class="docutils literal notranslate"><span class="pre">SequentialPreprocessor.train_preprocessor()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="environment.html">Environment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="agents.html">Agents</a></li>
+<li class="toctree-l2"><a class="reference internal" href="fqe.html">FQE</a></li>
+<li class="toctree-l2"><a class="reference internal" href="evaluation.html">Evaluation</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Customizations</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../customizations/custom_preprocessors.html">Custom Preprocessors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../customizations/custom_agents.html">Custom Agents</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">CFRL</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">Interface</a></li>
+      <li class="breadcrumb-item active">Preprocessor</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/interface/preprocessor.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="preprocessor">
+<span id="id1"></span><h1>Preprocessor<a class="headerlink" href="#preprocessor" title="Link to this heading"></a></h1>
+<p>This module implements the sequential data preprocessing method proposed by Wang et al. (2025).</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">cfrl</span> <span class="kn">import</span> <span class="n">preprocessor</span>
+</pre></div>
+</div>
+<dl class="py class" id="module-cfrl.preprocessor">
+<dt class="sig sig-object py" id="cfrl.preprocessor.Preprocessor">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cfrl.preprocessor.</span></span><span class="sig-name descname"><span class="pre">Preprocessor</span></span><a class="headerlink" href="#cfrl.preprocessor.Preprocessor" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Base class for preprocessors.</p>
+<p>Subclasses must implement the <code class="code docutils literal notranslate"><span class="pre">preprocess_single_step</span></code> and <code class="code docutils literal notranslate"><span class="pre">preprocess_multiple_steps</span></code> 
+methods.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="cfrl.preprocessor.Preprocessor.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#cfrl.preprocessor.Preprocessor.__init__" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="cfrl.preprocessor.Preprocessor.preprocess_multiple_steps">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">preprocess_multiple_steps</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">zs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">xs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">actions</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rewards</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">ndarray</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">ndarray</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">ndarray</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">ndarray</span></span></span><a class="headerlink" href="#cfrl.preprocessor.Preprocessor.preprocess_multiple_steps" title="Link to this definition"></a></dt>
+<dd><p>An abstract prototype of methods that preprocess a whole trajectory.</p>
+<dl class="simple">
+<dt>Args: </dt><dd><dl class="simple">
+<dt>zs (list or np.ndarray): </dt><dd><p>The observed sensitive attributes of each individual in the trajectory that is 
+to be preprocessed. It should be a 2D list or array following the Sensitive 
+Attributes Format.</p>
+</dd>
+<dt>states (list or np.ndarray): </dt><dd><p>The state trajectory that is to be preprocessed. It should be 
+a 3D list or array following the Full-trajectory States Format.</p>
+</dd>
+<dt>actions (list or np.ndarray): </dt><dd><p>The action trajectory that is to be preprocessed, often generated using a behavior 
+policy. It should be a 2D list or array following the Full-trajectory Actions 
+Format.</p>
+</dd>
+<dt>rewards (list or np.ndarray, optional): </dt><dd><p>The reward trajectory that is to be preprocessed. It should be 
+a 2D list or array following the Full-trajectory Rewards Format.</p>
+</dd>
+</dl>
+</dd>
+<dt>Returns:</dt><dd><dl class="simple">
+<dt>xs_tilde (np.ndarray): </dt><dd><p>The preprocessed states trajectory. It should be a 3D array following 
+the Full-trajectory States Format.</p>
+</dd>
+<dt>rs_tilde (np.ndarray, optional): </dt><dd><p>The preprocessed reward trajectory. It should be a 2D array following the 
+Full-trajectory Rewards Format. <code class="code docutils literal notranslate"><span class="pre">rs_tilde</span></code> is not returned if 
+<code class="code docutils literal notranslate"><span class="pre">rewards=None</span></code> in the function input.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="cfrl.preprocessor.Preprocessor.preprocess_single_step">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">preprocess_single_step</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">z</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">xt</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">xtm1</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">ndarray</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">atm1</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">ndarray</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rtm1</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">ndarray</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">ndarray</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">ndarray</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">ndarray</span></span></span><a class="headerlink" href="#cfrl.preprocessor.Preprocessor.preprocess_single_step" title="Link to this definition"></a></dt>
+<dd><p>An abstract prototype of methods that preprocess the states at a single time step.</p>
+<dl>
+<dt>Args: </dt><dd><dl>
+<dt>zs (list or np.ndarray): </dt><dd><blockquote>
+<div><p>The observed sensitive attributes of each individual in the trajectory that 
+is to be preprocessed. It should be a 2D list or array following 
+the Sensitive Attributes Format.</p>
+</div></blockquote>
+<dl class="simple">
+<dt>xt (list or np.ndarray): </dt><dd><p>The states at the current time step of each individual in the trajectory that 
+is to be preprocessed. It should be a 2D list or array following the Single-time 
+States Format.</p>
+</dd>
+<dt>xtm1 (list or np.ndarray, optional): </dt><dd><p>The states at the previous time step of each individual  
+in the trajectory that is to be preprocessed. It should be a 2D list or array 
+following the Single-time States Format.</p>
+</dd>
+<dt>atm1 (list or np.ndarray, optional): </dt><dd><p>The actions at the previous time step of each individual  
+in the trajectory that is to be preprocessed. It should be a 1D list or array following 
+the Single-time Actions Format.</p>
+</dd>
+<dt>rtm1 (list or np.ndarray, optional): </dt><dd><p>The rewards at the previous time step of each individual in the trajectory that 
+is to be preprocessed. It should be a 2D list or array following the 
+Single-time States Format.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd>
+<dt>Returns:</dt><dd><dl class="simple">
+<dt>xt_tilde (np.ndarray): </dt><dd><p>The preprocessed states at the given time step. It should be a 2D array following 
+the Single-time States Format.</p>
+</dd>
+<dt>rt_tilde (np.ndarray, optional): </dt><dd><p>The preprocessed rewards at the given time step. It should be a 1D array following 
+the Single-time Rewards Format. <code class="code docutils literal notranslate"><span class="pre">rt_tilde</span></code> is not returned if <code class="code docutils literal notranslate"><span class="pre">rtm1=None</span></code> 
+in the function input.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="cfrl.preprocessor.SequentialPreprocessor">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cfrl.preprocessor.</span></span><span class="sig-name descname"><span class="pre">SequentialPreprocessor</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">z_space</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_actions</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cross_folds</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mode</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="s"><span class="pre">'single'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'sensitive'</span></span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'single'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">reg_model</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="s"><span class="pre">'lm'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'nn'</span></span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'nn'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hidden_dims</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">[64,</span> <span class="pre">64]</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">epochs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1000</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">learning_rate</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0.005</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">batch_size</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">512</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_action_onehot</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_normalized</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_early_stopping</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">test_size</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0.2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">early_stopping_patience</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">10</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">early_stopping_min_delta</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0.01</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cfrl.preprocessor.SequentialPreprocessor" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#cfrl.preprocessor.Preprocessor" title="cfrl.preprocessor.Preprocessor"><code class="xref py py-class docutils literal notranslate"><span class="pre">Preprocessor</span></code></a></p>
+<p>Implementation of the sequential data preprocessing method proposed by Wang et al. (2025).</p>
+<p>The preprocessor first learns a model <span class="math notranslate nohighlight">\(\mu(s, a, z)\)</span> of the transition dynamics of 
+the MDP underlying the input trajectory. Then, at each time step, it uses <span class="math notranslate nohighlight">\(\mu\)</span> to 
+reconstruct the counterfactual states and concatenates the reconstructed counterfactual 
+states into a new augmented state vector.</p>
+<p>That is, let <span class="math notranslate nohighlight">\(z_i\)</span> be the observed sensitive attribute. At <span class="math notranslate nohighlight">\(t=0\)</span> (i.e. the initial 
+time step), for each individual <span class="math notranslate nohighlight">\(i\)</span> and sensitive attribute level <span class="math notranslate nohighlight">\(z\)</span>, the 
+preprocessor calculates</p>
+<div class="math notranslate nohighlight">
+\[\hat{x}_{i1}^z = x_{i1} - \hat{\mathbb{E}}(X_1|Z=z_i) + \hat{\mathbb{E}}(X_1|Z=z)\]</div>
+<p>and forms <span class="math notranslate nohighlight">\(\tilde{x}_{i1} = [\hat{x}_{i1}^{z^{(1)}}, \dots, \hat{x}_{i1}^{z^{(K)}}]\)</span>.</p>
+<p>At <span class="math notranslate nohighlight">\(t&gt;0\)</span>, for each individual <span class="math notranslate nohighlight">\(i\)</span> and sensitive attribute level <span class="math notranslate nohighlight">\(z\)</span>, the 
+preprocessor calculates</p>
+<div class="math notranslate nohighlight">
+\[[\hat{x}_{it}^z, \hat{r}_{i,t-1}^z] = x_{i1} - \hat{\mu}(x_{i,t-1}, a_{i,t-1}, z_i) 
+    + \hat{\mu}(\hat{x}_{i,t-1}^z, a_{i,t-1}, z)\]</div>
+<p>and forms <span class="math notranslate nohighlight">\(\tilde{x}_{it} = [\hat{x}_{it}^{z^{(1)}}, \dots, \hat{x}_{it}^{z^{(K)}}]\)</span> 
+and <span class="math notranslate nohighlight">\(\tilde{r}_{i,t-1} = \Sigma_{k=1}^K\hat{\mathbb{P}}(Z=z^{(k)})\hat{r}_{i,t-1}^{z^{(K)}}\)</span>.</p>
+<dl>
+<dt>References: </dt><dd><aside class="footnote-list brackets">
+<aside class="footnote brackets" id="id2" role="doc-footnote">
+<span class="label"><span class="fn-bracket">[</span>2<span class="fn-bracket">]</span></span>
+<p>Wang, J., Shi, C., Piette, J.D., Loftus, J.R., Zeng, D. and Wu, Z. (2025). 
+Counterfactually Fair Reinforcement Learning via Sequential Data 
+Preprocessing. arXiv preprint arXiv:2501.06366.</p>
+</aside>
+</aside>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="cfrl.preprocessor.SequentialPreprocessor.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">z_space</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_actions</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cross_folds</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mode</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="s"><span class="pre">'single'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'sensitive'</span></span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'single'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">reg_model</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="s"><span class="pre">'lm'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'nn'</span></span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'nn'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hidden_dims</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">[64,</span> <span class="pre">64]</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">epochs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1000</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">learning_rate</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0.005</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">batch_size</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">512</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_action_onehot</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_normalized</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_early_stopping</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">test_size</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0.2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">early_stopping_patience</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">10</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">early_stopping_min_delta</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0.01</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#cfrl.preprocessor.SequentialPreprocessor.__init__" title="Link to this definition"></a></dt>
+<dd><dl class="simple">
+<dt>Args: </dt><dd><dl class="simple">
+<dt>z_space (list or np.ndarray): </dt><dd><p>A 2D list or array of shape (K, zdim) where K is the 
+total number of legit values of the sensitive attribute and zdim is the dimension  
+of the sensitive attribute variable. It contains all legit values of the sensitive 
+attribute. Each legit value should occupy a separate row.</p>
+</dd>
+<dt>num_actions (int): </dt><dd><p>The total number of legit actions.</p>
+</dd>
+<dt>cross_folds (int, optional): </dt><dd><p>The number of cross folds used during training. When 
+<code class="code docutils literal notranslate"><span class="pre">cross_folds=k</span></code>, the preprocessor will learn <code class="code docutils literal notranslate"><span class="pre">k</span></code> models using different 
+subset of the training data, and the final output of <code class="code docutils literal notranslate"><span class="pre">preprocess_single_step</span></code> and 
+<code class="code docutils literal notranslate"><span class="pre">preprocess_multiple_steps</span></code> will be generally the average of the outputs from each 
+of the <code class="code docutils literal notranslate"><span class="pre">k</span></code> models.</p>
+</dd>
+<dt>mode (str, optional): </dt><dd><p>Can either be “single” or “sensitive”. When <code class="code docutils literal notranslate"><span class="pre">mode=&quot;single&quot;</span></code>, 
+the preprocessor will learn a single model of the transition dynamics where the 
+sensitive attribute is an input to the model. When <code class="code docutils literal notranslate"><span class="pre">mode=&quot;sensitive&quot;</span></code>, the 
+preprocessor will learn one transition dynamics model for each level of the sensitive 
+attribute, and transitions under each sensitive attribute <span class="math notranslate nohighlight">\(z\)</span> will 
+be estimated using the model corresponding to <span class="math notranslate nohighlight">\(z\)</span>.</p>
+</dd>
+<dt>reg_model (str, optional): </dt><dd><p>The type of the model used for learning the transition  
+dynamics. Can be “lm” (polynomial regression) or “nn” (neural network). 
+<em>Currently, only ‘nn’ is supported.</em></p>
+</dd>
+<dt>hidden_dims (list[int], optional): </dt><dd><p>The hidden dimensions of the neural network. This 
+argument is not used if <code class="code docutils literal notranslate"><span class="pre">reg_model=&quot;lm&quot;</span></code>.</p>
+</dd>
+<dt>epochs (int, optional): </dt><dd><p>The number of training epochs for the neural network. This 
+argument is not used if <cite>reg_model=”lm”</cite>.</p>
+</dd>
+<dt>learning_rate (int or float, optional): </dt><dd><p>The learning rate of the neural network. This 
+argument is not used if <code class="code docutils literal notranslate"><span class="pre">reg_model=&quot;lm&quot;</span></code>.</p>
+</dd>
+<dt>batch_size (int, optional): </dt><dd><p>The batch size of the neural network. This argument is 
+not used if <code class="code docutils literal notranslate"><span class="pre">reg_model=&quot;lm&quot;</span></code>.</p>
+</dd>
+<dt>is_action_onehot (bool, optional): </dt><dd><p>When set to <code class="code docutils literal notranslate"><span class="pre">True</span></code>, the actions will be one-hot 
+encoded.</p>
+</dd>
+<dt>is_normalized (bool, optional): </dt><dd><p>When set to <code class="code docutils literal notranslate"><span class="pre">True</span></code>, the states will be normalized 
+following the formula <code class="code docutils literal notranslate"><span class="pre">x_normalized</span> <span class="pre">=</span> <span class="pre">(x</span> <span class="pre">-</span> <span class="pre">mean(x))</span> <span class="pre">/</span> <span class="pre">std(x)</span></code>.</p>
+</dd>
+<dt>is_early_stopping (bool, optional): </dt><dd><p>When set to <code class="code docutils literal notranslate"><span class="pre">True</span></code>, will enforce early stopping 
+during neural network training. This argument is not used if <code class="code docutils literal notranslate"><span class="pre">reg_model=&quot;lm&quot;</span></code>.</p>
+</dd>
+<dt>test_size (int or float, optional): </dt><dd><p>An int or float between 0 and 1 (inclusive) that 
+specifies the proportion of the full data that is used as the test set for early 
+stopping. This argument is not used if <code class="code docutils literal notranslate"><span class="pre">reg_model=&quot;lm&quot;</span></code> or 
+<code class="code docutils literal notranslate"><span class="pre">is_early_stopping=False</span></code>.</p>
+</dd>
+<dt>early_stopping_patience (int, optional): </dt><dd><p>The number of consequentive epochs with 
+barely-decreasing loss needed for training to be early stopped. This argument is 
+not used if <code class="code docutils literal notranslate"><span class="pre">reg_model=&quot;lm&quot;</span></code> or <code class="code docutils literal notranslate"><span class="pre">is_early_stopping=False</span></code>.</p>
+</dd>
+<dt>early_stopping_min_delta (int for float, optional): </dt><dd><p>The minimum amount of decrease 
+in the loss so that the rounded is not considered barely-decreasing by the early 
+stopping mechanism. This argument is not used if <code class="code docutils literal notranslate"><span class="pre">reg_model=&quot;lm&quot;</span></code> or 
+<code class="code docutils literal notranslate"><span class="pre">is_early_stopping=False</span></code>.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="cfrl.preprocessor.SequentialPreprocessor.preprocess_multiple_steps">
+<span class="sig-name descname"><span class="pre">preprocess_multiple_steps</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">zs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">xs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">actions</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rewards</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">ndarray</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">ndarray</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">ndarray</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">ndarray</span></span></span><a class="headerlink" href="#cfrl.preprocessor.SequentialPreprocessor.preprocess_multiple_steps" title="Link to this definition"></a></dt>
+<dd><p>Preprocess a whole trajectory.</p>
+<p>When some <span class="math notranslate nohighlight">\(k&gt;1\)</span> cross folds are specified, the final output will be the avearge of the 
+outputs of each of the <span class="math notranslate nohighlight">\(k\)</span> transition models.</p>
+<dl class="simple">
+<dt>Args: </dt><dd><dl class="simple">
+<dt>zs (list or np.ndarray): </dt><dd><p>The observed sensitive attributes of each individual in the trajectory that is 
+to be preprocessed. It should be a list or array following the Sensitive 
+Attributes Format.</p>
+</dd>
+<dt>states (list or np.ndarray): </dt><dd><p>The state trajectory that is to be preprocessed. It should be 
+a list or array following the Full-trajectory States Format.</p>
+</dd>
+<dt>actions (list or np.ndarray): </dt><dd><p>The action trajectory that is to be preprocessed, often generated using a behavior 
+policy. It should be a list or array following the Full-trajectory Actions 
+Format.</p>
+</dd>
+<dt>rewards (list or np.ndarray, optional): </dt><dd><p>The reward trajectory that is to be preprocessed. It should be 
+a list or array following the Full-trajectory Rewards Format.</p>
+</dd>
+</dl>
+</dd>
+<dt>Returns:</dt><dd><dl class="simple">
+<dt>xs_tilde (np.ndarray): </dt><dd><p>The preprocessed states trajectory. It should be a 3D array following 
+the Full-trajectory States Format.</p>
+</dd>
+<dt>rs_tilde (np.ndarray, optional): </dt><dd><p>The preprocessed reward trajectory. It should be a 2D array following the 
+Full-trajectory Rewards Format. <code class="code docutils literal notranslate"><span class="pre">rs_tilde</span></code> is not returned if <code class="code docutils literal notranslate"><span class="pre">rewards=None</span></code> 
+in the function input.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="cfrl.preprocessor.SequentialPreprocessor.preprocess_single_step">
+<span class="sig-name descname"><span class="pre">preprocess_single_step</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">z</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">xt</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">xtm1</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">ndarray</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">atm1</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">ndarray</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rtm1</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">ndarray</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">ndarray</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">ndarray</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">ndarray</span></span></span><a class="headerlink" href="#cfrl.preprocessor.SequentialPreprocessor.preprocess_single_step" title="Link to this definition"></a></dt>
+<dd><p>Preprocess one single time step of the trajectory.</p>
+<p>When some <span class="math notranslate nohighlight">\(k&gt;1\)</span> cross folds are specified, the final output will be the avearge of the 
+outputs of each of the <span class="math notranslate nohighlight">\(k\)</span> transition models.</p>
+<p>Important Note: A <code class="code docutils literal notranslate"><span class="pre">SequentialPreprocessor</span></code> object internally stores the preprocessed 
+counterfactual states from the previous function call using a states buffer, and the 
+stored counterfactual states will be used to preprocess the inputs of the current function 
+call. In this case, suppose <code class="code docutils literal notranslate"><span class="pre">preprocess_single_step()</span></code> is called on a set of transitions at 
+time <span class="math notranslate nohighlight">\(t\)</span> in some trajectory. Then, at the next call of <code class="code docutils literal notranslate"><span class="pre">preprocess_single_step()</span></code> for 
+this instance of <code class="code docutils literal notranslate"><span class="pre">SequentialPreprocessor</span></code>, the transitions passed to the function must be 
+from time <span class="math notranslate nohighlight">\(t+1\)</span> of the same trajectory to ensure that the buffer works correctly. 
+To preprocess another trajectory, either use another instance of <code class="code docutils literal notranslate"><span class="pre">SequentialPreprocessor</span></code>, 
+or pass the initial step of the trajectory to <code class="code docutils literal notranslate"><span class="pre">preprocess_single_step()</span></code> with 
+<code class="code docutils literal notranslate"><span class="pre">xtm1=None</span></code> and <code class="code docutils literal notranslate"><span class="pre">atm1=None</span></code> to reset the buffer.</p>
+<p>In general, unless step-wise preprocessing is necessary, we recommend using 
+<code class="code docutils literal notranslate"><span class="pre">preprocess_multiple_steps()</span></code> to preprocess a whole trajectory to avoid unintended bugs.</p>
+<dl>
+<dt>Args: </dt><dd><dl>
+<dt>zs (list or np.ndarray): </dt><dd><blockquote>
+<div><p>The observed sensitive attributes of each individual in the trajectory that 
+is to be preprocessed. It should be a 2D list or array following 
+the Sensitive Attributes Format.</p>
+</div></blockquote>
+<dl class="simple">
+<dt>xt (list or np.ndarray): </dt><dd><p>The states at the current time step of each individual in the trajectory that 
+is to be preprocessed. It should be a 2D list or array following the Single-time 
+States Format.</p>
+</dd>
+<dt>xtm1 (list or np.ndarray, optional): </dt><dd><p>The states at the previous time step of each individual  
+in the trajectory that is to be preprocessed. It should be a 2D list or array 
+following the Single-time States Format.</p>
+</dd>
+<dt>atm1 (list or np.ndarray, optional): </dt><dd><p>The actions at the previous time step of each individual  
+in the trajectory that is to be preprocessed. It should be a 1D list or array following 
+the Single-time Actions Format. When both <code class="code docutils literal notranslate"><span class="pre">xtm1</span></code> and <code class="code docutils literal notranslate"><span class="pre">atm1</span></code> are set to 
+<code class="code docutils literal notranslate"><span class="pre">None</span></code>, the preprocessor will consider the input to be from the initial time 
+step of a new trajectory, and the internal states buffer will be reset.</p>
+</dd>
+<dt>rtm1 (list or np.ndarray, optional): </dt><dd><p>The rewards at the previous time step of each individual in the trajectory that 
+is to be preprocessed. It should be a 2D list or array following the 
+Single-time States Format.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd>
+<dt>Returns:</dt><dd><dl class="simple">
+<dt>xt_tilde (np.ndarray): </dt><dd><p>The preprocessed states at the given time step. It should be a 2D array following 
+the Single-time States Format.</p>
+</dd>
+<dt>rt_tilde (np.ndarray, optional): </dt><dd><p>The preprocessed rewards at the given time step. It should be a 1D array following 
+the Single-time Rewards Format. <code class="code docutils literal notranslate"><span class="pre">rt_tilde</span></code> is not returned if <code class="code docutils literal notranslate"><span class="pre">rtm1=None</span></code> 
+in the function input.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="cfrl.preprocessor.SequentialPreprocessor.train_preprocessor">
+<span class="sig-name descname"><span class="pre">train_preprocessor</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">zs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">xs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">actions</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rewards</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">ndarray</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">ndarray</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">ndarray</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#cfrl.preprocessor.SequentialPreprocessor.train_preprocessor" title="Link to this definition"></a></dt>
+<dd><p>Train the sequential preprocessor and preprocess the training trajectory.</p>
+<p>When some <span class="math notranslate nohighlight">\(k&gt;1\)</span> cross folds are specified, then <span class="math notranslate nohighlight">\(k\)</span> transition models will be trained, 
+each using all but one of the folds. That is, for each fold in the training trajectory, we train 
+a model using all the other folds, and we preprocess the current fold with this model. 
+The detailed preprocessing procedure can be found 
+<a class="reference external" href="https://github.com/JianhanZhang/CFRL/blob/main/examples/real_data_workflow_description.pdf">here</a>.</p>
+<dl class="simple">
+<dt>Args: </dt><dd><dl class="simple">
+<dt>zs (list or np.ndarray): </dt><dd><p>The observed sensitive attributes of each individual 
+in the training data. It should be a 2D list or array following the Sensitive 
+Attributes Format.</p>
+</dd>
+<dt>xs (list or np.ndarray): </dt><dd><p>The state trajectory used for training. It should be 
+a 3D list or array following the Full-trajectory States Format.</p>
+</dd>
+<dt>actions (list or np.ndarray): </dt><dd><p>The action trajectory used for training, often generated using a behavior 
+policy. It should be a 2D list or array following the Full-trajectory Actions 
+Format.</p>
+</dd>
+<dt>rewards (list or np.ndarray): </dt><dd><p>The reward trajectory used for training. It should be 
+a 2D list or array following the Full-trajectory Rewards Format.</p>
+</dd>
+</dl>
+</dd>
+<dt>Returns:</dt><dd><dl class="simple">
+<dt>xs_tilde (np.ndarray): </dt><dd><p>The preprocessed states trajectory. It should be a 3D array following 
+the Full-trajectory States Format.</p>
+</dd>
+<dt>rs_tilde (np.ndarray): </dt><dd><p>The preprocessed reward trajectory. It should be a 2D array following the 
+Full-trajectory Rewards Format.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="reader.html" class="btn btn-neutral float-left" title="Reader" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="environment.html" class="btn btn-neutral float-right" title="Environment" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, The CFRL Team.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
