@@ -19,7 +19,7 @@
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Interface" href="../interface/index.html" />
+    <link rel="next" title="Common Issues" href="common_issues.html" />
     <link rel="prev" title="Tabular Trajectory Data" href="../inputs_and_outputs/tabular_trajectory_data.html" /> 
 </head>
 
@@ -45,6 +45,7 @@
               <p class="caption" role="heading"><span class="caption-text">Introduction</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../introduction/getting_started.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../introduction/computing_times.html">Computing Times</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../introduction/faq.html">FAQ</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Inputs and Outputs</span></p>
@@ -57,11 +58,12 @@
 <ul class="current">
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Example Workflows</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#preprocessing-only">Preprocessing Only</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#policy-learning-only">Policy Learning Only</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#preprocessing-policy-learning">Preprocessing + Policy Learning</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#assessing-preprocessors-using-synthetic-data">Assessing Preprocessors Using Synthetic Data</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#assessing-policies-using-real-data">Assessing Policies Using Real Data</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="common_issues.html">Common Issues</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Interface</span></p>
 <ul>
@@ -71,6 +73,10 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../customizations/custom_preprocessors.html">Custom Preprocessors</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../customizations/custom_agents.html">Custom Agents</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">About CFRL</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../about_cfrl/the_cfrl_team.html">The CFRL Team</a></li>
 </ul>
 
         </div>
@@ -111,9 +117,9 @@ using another reinforcement learning library or application that better fits the
 <p><strong>Code:</strong> A detailed code demonstration of this workflow can be found
 <a class="reference external" href="https://github.com/JianhanZhang/CFRL/blob/main/examples/preprocessing_only_workflow.ipynb">here</a>.</p>
 </section>
-<section id="policy-learning-only">
-<h2>Policy Learning Only<a class="headerlink" href="#policy-learning-only" title="Link to this heading"></a></h2>
-<img alt="../_images/policy_learning_only_workflow.png" src="../_images/policy_learning_only_workflow.png" />
+<section id="preprocessing-policy-learning">
+<h2>Preprocessing + Policy Learning<a class="headerlink" href="#preprocessing-policy-learning" title="Link to this heading"></a></h2>
+<img alt="../_images/preprocessing_policy_learning_workflow.png" src="../_images/preprocessing_policy_learning_workflow.png" />
 <p>In this workflow, CFRL takes in an offline trajectory and then preprocesses the offline trajectory
 using <code class="code docutils literal notranslate"><span class="pre">SequentialPreprocessor</span></code>. After that, the preprocessed trajectory is passed into
 <code class="code docutils literal notranslate"><span class="pre">FQI</span></code> to train a counterfactually fair policy, which is the final output of the workflow. This
@@ -121,7 +127,7 @@ workflow is appropriate if the user wants to train a policy using CFRL. The trai
 further evaluated on its value and counterfactual fairness, which is discussed in detail in the
 “Assessing Policies Using Real Data” workflow later in this section.</p>
 <p><strong>Code:</strong> A detailed code demonstration of this workflow can be found
-<a class="reference external" href="https://github.com/JianhanZhang/CFRL/blob/main/examples/policy_learning_only_workflow.ipynb">here</a>.</p>
+<a class="reference external" href="https://github.com/JianhanZhang/CFRL/blob/main/examples/preprocessing_policy_learning_workflow.ipynb">here</a>.</p>
 </section>
 <section id="assessing-preprocessors-using-synthetic-data">
 <h2>Assessing Preprocessors Using Synthetic Data<a class="headerlink" href="#assessing-preprocessors-using-synthetic-data" title="Link to this heading"></a></h2>
@@ -162,7 +168,7 @@ interacting with the true underlying environment.</p>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="../inputs_and_outputs/tabular_trajectory_data.html" class="btn btn-neutral float-left" title="Tabular Trajectory Data" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="../interface/index.html" class="btn btn-neutral float-right" title="Interface" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="common_issues.html" class="btn btn-neutral float-right" title="Common Issues" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

@@ -46,6 +46,7 @@
               <p class="caption" role="heading"><span class="caption-text">Introduction</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../introduction/getting_started.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../introduction/computing_times.html">Computing Times</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../introduction/faq.html">FAQ</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Inputs and Outputs</span></p>
@@ -57,6 +58,7 @@
 <p class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../tutorials/example_workflows.html">Example Workflows</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/common_issues.html">Common Issues</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Interface</span></p>
 <ul class="current">
@@ -83,6 +85,10 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../customizations/custom_preprocessors.html">Custom Preprocessors</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../customizations/custom_agents.html">Custom Agents</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">About CFRL</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../about_cfrl/the_cfrl_team.html">The CFRL Team</a></li>
 </ul>
 
         </div>
@@ -255,7 +261,7 @@ the values in <code class="code docutils literal notranslate"><span class="pre">
 
 <dl class="py function">
 <dt class="sig sig-object py" id="cfrl.evaluation.evaluate_reward_through_fqe">
-<span class="sig-prename descclassname"><span class="pre">cfrl.evaluation.</span></span><span class="sig-name descname"><span class="pre">evaluate_reward_through_fqe</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">zs:</span> <span class="pre">list</span> <span class="pre">|</span> <span class="pre">~numpy.ndarray,</span> <span class="pre">states:</span> <span class="pre">list</span> <span class="pre">|</span> <span class="pre">~numpy.ndarray,</span> <span class="pre">actions:</span> <span class="pre">list</span> <span class="pre">|</span> <span class="pre">~numpy.ndarray,</span> <span class="pre">rewards:</span> <span class="pre">list</span> <span class="pre">|</span> <span class="pre">~numpy.ndarray,</span> <span class="pre">policy:</span> <span class="pre">~cfrl.agents.Agent,</span> <span class="pre">model_type:</span> <span class="pre">~typing.Literal['lm',</span> <span class="pre">'nn'],</span> <span class="pre">f_ua:</span> <span class="pre">~typing.Callable[[int],</span> <span class="pre">int]</span> <span class="pre">=</span> <span class="pre">&lt;function</span> <span class="pre">f_ua_default&gt;,</span> <span class="pre">hidden_dims:</span> <span class="pre">list[int]</span> <span class="pre">=</span> <span class="pre">[32],</span> <span class="pre">learning_rate:</span> <span class="pre">int</span> <span class="pre">|</span> <span class="pre">float</span> <span class="pre">=</span> <span class="pre">0.1,</span> <span class="pre">epochs:</span> <span class="pre">int</span> <span class="pre">=</span> <span class="pre">500,</span> <span class="pre">gamma:</span> <span class="pre">int</span> <span class="pre">|</span> <span class="pre">float</span> <span class="pre">=</span> <span class="pre">0.9,</span> <span class="pre">max_iter:</span> <span class="pre">int</span> <span class="pre">=</span> <span class="pre">200,</span> <span class="pre">seed:</span> <span class="pre">int</span> <span class="pre">=</span> <span class="pre">1</span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">integer</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">floating</span></span></span><a class="headerlink" href="#cfrl.evaluation.evaluate_reward_through_fqe" title="Link to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">cfrl.evaluation.</span></span><span class="sig-name descname"><span class="pre">evaluate_reward_through_fqe</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">zs:</span> <span class="pre">list</span> <span class="pre">|</span> <span class="pre">~numpy.ndarray,</span> <span class="pre">states:</span> <span class="pre">list</span> <span class="pre">|</span> <span class="pre">~numpy.ndarray,</span> <span class="pre">actions:</span> <span class="pre">list</span> <span class="pre">|</span> <span class="pre">~numpy.ndarray,</span> <span class="pre">rewards:</span> <span class="pre">list</span> <span class="pre">|</span> <span class="pre">~numpy.ndarray,</span> <span class="pre">policy:</span> <span class="pre">~cfrl.agents.Agent,</span> <span class="pre">model_type:</span> <span class="pre">~typing.Literal['lm',</span> <span class="pre">'nn'],</span> <span class="pre">f_ua:</span> <span class="pre">~typing.Callable[[int],</span> <span class="pre">int]</span> <span class="pre">=</span> <span class="pre">&lt;function</span> <span class="pre">f_ua_default&gt;,</span> <span class="pre">hidden_dims:</span> <span class="pre">list[int]</span> <span class="pre">=</span> <span class="pre">[32],</span> <span class="pre">learning_rate:</span> <span class="pre">int</span> <span class="pre">|</span> <span class="pre">float</span> <span class="pre">=</span> <span class="pre">0.1,</span> <span class="pre">epochs:</span> <span class="pre">int</span> <span class="pre">=</span> <span class="pre">500,</span> <span class="pre">gamma:</span> <span class="pre">int</span> <span class="pre">|</span> <span class="pre">float</span> <span class="pre">=</span> <span class="pre">0.9,</span> <span class="pre">max_iter:</span> <span class="pre">int</span> <span class="pre">=</span> <span class="pre">200,</span> <span class="pre">seed:</span> <span class="pre">int</span> <span class="pre">=</span> <span class="pre">1,</span> <span class="pre">is_loss_monitored:</span> <span class="pre">bool</span> <span class="pre">=</span> <span class="pre">False,</span> <span class="pre">is_early_stopping_nn:</span> <span class="pre">bool</span> <span class="pre">=</span> <span class="pre">False,</span> <span class="pre">test_size_nn:</span> <span class="pre">int</span> <span class="pre">|</span> <span class="pre">float</span> <span class="pre">=</span> <span class="pre">0.2,</span> <span class="pre">loss_monitoring_patience:</span> <span class="pre">int</span> <span class="pre">=</span> <span class="pre">10,</span> <span class="pre">loss_monitoring_min_delta:</span> <span class="pre">int</span> <span class="pre">|</span> <span class="pre">float</span> <span class="pre">=</span> <span class="pre">0.005,</span> <span class="pre">early_stopping_patience_nn:</span> <span class="pre">int</span> <span class="pre">=</span> <span class="pre">10,</span> <span class="pre">early_stopping_min_delta_nn:</span> <span class="pre">int</span> <span class="pre">|</span> <span class="pre">float</span> <span class="pre">=</span> <span class="pre">0.005,</span> <span class="pre">is_q_monitored:</span> <span class="pre">bool</span> <span class="pre">=</span> <span class="pre">True,</span> <span class="pre">is_early_stopping_q:</span> <span class="pre">bool</span> <span class="pre">=</span> <span class="pre">True,</span> <span class="pre">q_monitoring_patience:</span> <span class="pre">int</span> <span class="pre">=</span> <span class="pre">5,</span> <span class="pre">q_monitoring_min_delta:</span> <span class="pre">int</span> <span class="pre">|</span> <span class="pre">float</span> <span class="pre">=</span> <span class="pre">0.005,</span> <span class="pre">early_stopping_patience_q:</span> <span class="pre">int</span> <span class="pre">=</span> <span class="pre">5,</span> <span class="pre">early_stopping_min_delta_q:</span> <span class="pre">int</span> <span class="pre">|</span> <span class="pre">float</span> <span class="pre">=</span> <span class="pre">0.005</span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">integer</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">floating</span></span></span><a class="headerlink" href="#cfrl.evaluation.evaluate_reward_through_fqe" title="Link to this definition"></a></dt>
 <dd><p>Estimate the value of a policy using fitted Q evaluation (FQE).</p>
 <p>The function takes in a offline trajectory and the policy of interest, which are then used by 
 a FQE algorithm to evaluate the value of the policy.</p>
@@ -298,6 +304,73 @@ in the objective function.</p>
 <dt>max_iter (int, optional): </dt><dd><p>The number of iterations for learning the Q function.</p>
 </dd>
 <dt>seed (int, optional): </dt><dd><p>The random seed used for FQE.</p>
+</dd>
+<dt>is_loss_monitored (bool, optional):</dt><dd><p>When set to <code class="code docutils literal notranslate"><span class="pre">True</span></code>, will split the training data into a training set and a 
+validation set, and will monitor the validation loss when training the neural network 
+approximator of the Q function in each iteration. A warning 
+will be raised if the percent absolute change in the validation loss is greater than <code class="code docutils literal notranslate"><span class="pre">loss_monitoring_min_delta</span></code> for at 
+least one of the final <span class="math notranslate nohighlight">\(p\)</span> epochs during neural network training, where <span class="math notranslate nohighlight">\(p\)</span> is specified 
+by the argument <code class="code docutils literal notranslate"><span class="pre">loss_monitoring_patience</span></code>. This argument is not used if <code class="code docutils literal notranslate"><span class="pre">model_type=&quot;lm&quot;</span></code>.</p>
+</dd>
+<dt>is_early_stopping_nn (bool, optional): </dt><dd><p>When set to <code class="code docutils literal notranslate"><span class="pre">True</span></code>, will split the training data into a training set and a 
+validation set, and will enforce early stopping based on the validation loss 
+when training the neural network approximator of the Q function in each iteration. That is, in each iteration, 
+neural network training will stop early 
+if the percent decrease in the validation loss is no greater than <code class="code docutils literal notranslate"><span class="pre">early_stopping_min_delta_nn</span></code> for <span class="math notranslate nohighlight">\(q\)</span> consecutive training 
+epochs, where <span class="math notranslate nohighlight">\(q\)</span> is specified by the argument <code class="code docutils literal notranslate"><span class="pre">early_stopping_patience_nn</span></code>. This argument is not used if 
+<code class="code docutils literal notranslate"><span class="pre">model_type=&quot;lm&quot;</span></code>.</p>
+</dd>
+<dt>test_size_nn (int or float, optional): </dt><dd><p>An <code class="code docutils literal notranslate"><span class="pre">int</span></code> or <code class="code docutils literal notranslate"><span class="pre">float</span></code> between 0 and 1 (inclusive) that 
+specifies the proportion of the full training data that is used as the validation set for loss 
+monitoring and early stopping. This argument is not used if <code class="code docutils literal notranslate"><span class="pre">model_type=&quot;lm&quot;</span></code> or 
+both <code class="code docutils literal notranslate"><span class="pre">is_loss_monitored</span></code> and <code class="code docutils literal notranslate"><span class="pre">is_early_stopping</span></code> are <code class="code docutils literal notranslate"><span class="pre">False</span></code>.</p>
+</dd>
+<dt>loss_monitoring_patience (int, optional): </dt><dd><p>The number of consecutive epochs with barely-changing validation loss at the end of neural network training that is needed 
+for loss monitoring to not raise warnings. This argument is not used if <code class="code docutils literal notranslate"><span class="pre">model_type=&quot;lm&quot;</span></code> 
+or <code class="code docutils literal notranslate"><span class="pre">is_loss_monitored=False</span></code>.</p>
+</dd>
+<dt>loss_monitoring_min_delta (int for float, optional): </dt><dd><p>The maximum amount of percent absolute change in the validation loss for it to be considered 
+barely-changing by the loss monitoring mechanism. This argument is 
+not used if <code class="code docutils literal notranslate"><span class="pre">model_type=&quot;lm&quot;</span></code> or <code class="code docutils literal notranslate"><span class="pre">is_loss_monitored=False</span></code>.</p>
+</dd>
+<dt>early_stopping_patience_nn (int, optional): </dt><dd><p>The number of consecutive epochs with barely-decreasing validation loss during neural network training that is needed 
+for early stopping to be triggered. This argument is not used if <code class="code docutils literal notranslate"><span class="pre">model_type=&quot;lm&quot;</span></code> 
+or <code class="code docutils literal notranslate"><span class="pre">is_early_stopping_nn=False</span></code>.</p>
+</dd>
+<dt>early_stopping_min_delta_nn (int for float, optional): </dt><dd><p>The maximum amount of decrease in the validation loss for it to be considered 
+barely-decreasing by the early stopping mechanism. This argument is 
+not used if <code class="code docutils literal notranslate"><span class="pre">model_type=&quot;lm&quot;</span></code> or <code class="code docutils literal notranslate"><span class="pre">is_early_stopping_nn=False</span></code>.</p>
+</dd>
+<dt>is_q_monitored (bool, optional):</dt><dd><p>When set to <code class="code docutils literal notranslate"><span class="pre">True</span></code>, will monitor the Q values estimated by the neural network 
+approximator of the Q function in each iteration at all the state-action pairs present in the training trajectory. A warning 
+will be raised if the percent absolute change in some Q value is greater than <code class="code docutils literal notranslate"><span class="pre">q_monitoring_min_delta</span></code> for at 
+least one of the final <span class="math notranslate nohighlight">\(r\)</span> iterations of model updates, where <span class="math notranslate nohighlight">\(r\)</span> is specified 
+by the argument <code class="code docutils literal notranslate"><span class="pre">q_monitoring_patience</span></code>. This argument is not used if <code class="code docutils literal notranslate"><span class="pre">model_type=&quot;lm&quot;</span></code>.</p>
+</dd>
+<dt>is_early_stopping_q (bool, optional): </dt><dd><p>When set to <code class="code docutils literal notranslate"><span class="pre">True</span></code>, will monitor the Q values estimated by the neural network 
+approximator of the Q function at all the state-action pairs present in the training trajectory, 
+and will enforce early stopping based on the estimated Q values 
+when training the approximated Q function. That is, 
+FQE training will stop early 
+if the percent absolute changes in all the predicted Q values are no greater than <code class="code docutils literal notranslate"><span class="pre">early_stopping_min_delta_q</span></code> for <span class="math notranslate nohighlight">\(s\)</span> consecutive 
+iterations of model updates, where <span class="math notranslate nohighlight">\(s\)</span> is specified by the argument <code class="code docutils literal notranslate"><span class="pre">early_stopping_patience_q</span></code>. This argument is not used if 
+<code class="code docutils literal notranslate"><span class="pre">model_type=&quot;lm&quot;</span></code>.</p>
+</dd>
+<dt>q_monitoring_patience (int, optional): </dt><dd><p>The number of consecutive iterations with barely-changing estimated Q values at the end of the iterative updates that is needed 
+for Q value monitoring to not raise warnings. This argument is not used if <code class="code docutils literal notranslate"><span class="pre">model_type=&quot;lm&quot;</span></code> 
+or <code class="code docutils literal notranslate"><span class="pre">is_q_monitored=False</span></code>.</p>
+</dd>
+<dt>q_monitoring_min_delta (int for float, optional): </dt><dd><p>The maximum amount of persent absolute change in the estimated Q values for them to be considered 
+barely-changing by the Q value monitoring mechanism. This argument is 
+not used if <code class="code docutils literal notranslate"><span class="pre">model_type=&quot;lm&quot;</span></code> or <code class="code docutils literal notranslate"><span class="pre">is_q_monitored=False</span></code>.</p>
+</dd>
+<dt>early_stopping_patience_q (int, optional): </dt><dd><p>The number of consecutive iterations with barely-changing estimated Q values that is needed 
+for early stopping to be triggered. This argument is not used if <code class="code docutils literal notranslate"><span class="pre">model_type=&quot;lm&quot;</span></code> 
+or <code class="code docutils literal notranslate"><span class="pre">is_early_stopping_q=False</span></code>.</p>
+</dd>
+<dt>early_stopping_min_delta_q (int for float, optional): </dt><dd><p>The maximum amount of percent absolute change in the estimated Q values for them to be considered 
+barely-changing by the early stopping mechanism. This argument is 
+not used if <code class="code docutils literal notranslate"><span class="pre">model_type=&quot;lm&quot;</span></code> or <code class="code docutils literal notranslate"><span class="pre">is_early_stopping_q=False</span></code>.</p>
 </dd>
 </dl>
 </dd>

@@ -1,0 +1,255 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Common Issues &mdash; CFRL 0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=2709fde1"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Interface" href="../interface/index.html" />
+    <link rel="prev" title="Example Workflows" href="example_workflows.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            CFRL
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Introduction</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../introduction/getting_started.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../introduction/computing_times.html">Computing Times</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../introduction/faq.html">FAQ</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Inputs and Outputs</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../inputs_and_outputs/data_requirements.html">Data Requirements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../inputs_and_outputs/trajectory_arrays.html">Trajectory Arrays</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../inputs_and_outputs/tabular_trajectory_data.html">Tabular Trajectory Data</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="example_workflows.html">Example Workflows</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Common Issues</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#non-convergence">Non-convergence</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#sources-of-non-convergence">Sources of Non-convergence</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#checking-for-neural-network-non-convergence-using-loss-monitoring">Checking for Neural Network Non-convergence Using Loss Monitoring</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#checking-for-approximated-q-function-non-convergence-using-q-value-monitoring">Checking for Approximated Q Function Non-convergence Using Q Value Monitoring</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#mitigating-non-convergence">Mitigating Non-convergence</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Interface</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../interface/index.html">Interface</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Customizations</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../customizations/custom_preprocessors.html">Custom Preprocessors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../customizations/custom_agents.html">Custom Agents</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">About CFRL</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../about_cfrl/the_cfrl_team.html">The CFRL Team</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">CFRL</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Common Issues</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/tutorials/common_issues.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="common-issues">
+<h1>Common Issues<a class="headerlink" href="#common-issues" title="Link to this heading"></a></h1>
+<p>This section introduces some common issues in CFRL and discusses how
+users might deal with these issues.</p>
+<section id="non-convergence">
+<h2>Non-convergence<a class="headerlink" href="#non-convergence" title="Link to this heading"></a></h2>
+<p>Non-convergence happens when the model fails to converge
+at the end of model training. In CFRL, non-convergence can arise when</p>
+<ol class="arabic simple">
+<li><p>Training the <code class="code docutils literal notranslate"><span class="pre">SequentialPreprocessor</span></code>.</p></li>
+<li><p>Training the <code class="code docutils literal notranslate"><span class="pre">SimulatedEnvironment</span></code>.</p></li>
+<li><p>Training the <code class="code docutils literal notranslate"><span class="pre">FQI</span></code>.</p></li>
+<li><p>Training the <code class="code docutils literal notranslate"><span class="pre">FQE</span></code> in <code class="code docutils literal notranslate"><span class="pre">evaluate_reward_through_fqe()</span></code>.</p></li>
+</ol>
+<p>In theory, non-convergence might lead the models in CFRL to produce
+inaccurate outputs. In simulation studies, the models in CFRL often perform
+well despite potential non-convergence, though occasionally non-convergence
+does result in notably suboptimal outputs.</p>
+<section id="sources-of-non-convergence">
+<h3>Sources of Non-convergence<a class="headerlink" href="#sources-of-non-convergence" title="Link to this heading"></a></h3>
+<p><code class="code docutils literal notranslate"><span class="pre">SequentialPreprocessor</span></code> and <code class="code docutils literal notranslate"><span class="pre">SimulatedEnvironment</span></code> rely on a
+neural network or to approximate the underlying environment’s transition
+dynamics. Similarly, <code class="code docutils literal notranslate"><span class="pre">FQI</span></code> and <code class="code docutils literal notranslate"><span class="pre">FQE</span></code> rely
+on a neural network to approximate the Q function in each iteration.
+If the neural network fail to converge during training, then
+non-convergence arises.</p>
+<p>There are many possible reasons why a neural network might fail
+to converge. For example, an inappropriate network depth or learning rate
+might lead to failures to converge. Besides, if the training data is
+noisy or its size is not large enough, the network can also fail to
+converge. Moreover, if the maximum number of training epochs is too small,
+then the training might stop before the network converges, which leads
+the network to fail to converge.</p>
+<p>In <code class="code docutils literal notranslate"><span class="pre">FQI</span></code> and <code class="code docutils literal notranslate"><span class="pre">FQE</span></code>, there is one more source of
+non-convergence. The Q function approximator is updated in each iteration
+of FQI and FQE training. Thus, non-convergence can also arise if the
+approximated Q function fails to converge to the true Q function in these
+iterative updates.</p>
+<p>Similarly, many reasons might explain why the approximated Q function
+might fail to converge. One reason might be the maximum number of iteration
+is so small that the training stops before the approximated Q function can
+converge. Also, we note that at each iteration, the approximated Q function
+is obtained by solving a supervised learning problem whose learning target
+depends on (1) the observed rewards and (2) the Q value predicted by the
+approximated Q function from the previous iteration. Therefore, if the
+observed rewards are noisy, or if the Q function is badly approximated
+in previous iterations, then the learning target might be noisy or
+inaccurate, and consequently the approximated Q function might fail to
+converge.</p>
+</section>
+<section id="checking-for-neural-network-non-convergence-using-loss-monitoring">
+<h3>Checking for Neural Network Non-convergence Using Loss Monitoring<a class="headerlink" href="#checking-for-neural-network-non-convergence-using-loss-monitoring" title="Link to this heading"></a></h3>
+<p>CFRL provides a simple loss monitoring tool that can check for potential non-convergence
+in the training of neural networks in <code class="code docutils literal notranslate"><span class="pre">SequentialPreprocessor</span></code>,
+<code class="code docutils literal notranslate"><span class="pre">SimulatedEnvironment</span></code>, <code class="code docutils literal notranslate"><span class="pre">FQI</span></code>, and <code class="code docutils literal notranslate"><span class="pre">FQE</span></code>. This tool can
+be enabled by setting <code class="code docutils literal notranslate"><span class="pre">is_loss_monitored=True</span></code> in
+<code class="code docutils literal notranslate"><span class="pre">evaluate_reward_through_fqe()</span></code> and in the constructors of
+<code class="code docutils literal notranslate"><span class="pre">SequentialPreprocessor</span></code>, <code class="code docutils literal notranslate"><span class="pre">SimulatedEnvironment</span></code>, <code class="code docutils literal notranslate"><span class="pre">FQI</span></code>,
+and <code class="code docutils literal notranslate"><span class="pre">FQE</span></code>. When this tool is enabled, it divides the training data into
+a training set and a validation set and then monitors the validation loss in
+each epoch of neural network training. At each epoch of neural network
+training, it monitors the percent absolute change in the validation loss. It raises
+a warning if the percent absolute change in the validation loss is greater than some
+threshold in at least one of the final <span class="math notranslate nohighlight">\(p\)</span> epochs before training stops
+(or is early stopped), where the threshold and <span class="math notranslate nohighlight">\(p\)</span> are user-specified
+parameters. The threshold is defaulted to <span class="math notranslate nohighlight">\(0.005\)</span> and <span class="math notranslate nohighlight">\(p\)</span> is
+defaulted to <span class="math notranslate nohighlight">\(10\)</span>.</p>
+<p>We note that while loss monitoring might flag potential non-convergence, it is
+neither necessary nor sufficient for non-convergence. For example, when the
+validation loss plateaus without reaching the true minimum, loss monitoring will
+not raise warnings despite non-convergence. On the other hand, if the choice of
+the threshold is too small, or the choice of <span class="math notranslate nohighlight">\(p\)</span> is too large, then the
+tool will raise a warning even though the model has almost converged. Moreover,
+this loss monitoring tool is applicable only when the model type is <code class="code docutils literal notranslate"><span class="pre">&quot;nn&quot;</span></code>,
+and it only checks for potential non-convergence in neural network training
+rather than potential non-convergence in the update of the Q function approximators.</p>
+</section>
+<section id="checking-for-approximated-q-function-non-convergence-using-q-value-monitoring">
+<h3>Checking for Approximated Q Function Non-convergence Using Q Value Monitoring<a class="headerlink" href="#checking-for-approximated-q-function-non-convergence-using-q-value-monitoring" title="Link to this heading"></a></h3>
+<p>CFRL also provides a simple Q value monitoring tool that can check for potential non-convergence
+in the training of the approximated Q function in <code class="code docutils literal notranslate"><span class="pre">FQI</span></code> and <code class="code docutils literal notranslate"><span class="pre">FQE</span></code>.
+This tool can be enabled by setting <code class="code docutils literal notranslate"><span class="pre">is_q_monitored=True</span></code> in
+<code class="code docutils literal notranslate"><span class="pre">evaluate_reward_through_fqe()</span></code> and in the constructors of <code class="code docutils literal notranslate"><span class="pre">FQI</span></code>
+and <code class="code docutils literal notranslate"><span class="pre">FQE</span></code>. When this tool is enabled, at each iteration <span class="math notranslate nohighlight">\(t &gt; 0\)</span>,
+using the current iteration’s approximated Q function, it computes
+a vector <span class="math notranslate nohighlight">\(Q_t\)</span> that contains the approximated Q values at all of the state-action
+pairs that are present in the training trajectory. For each component
+<span class="math notranslate nohighlight">\(Q_t^{(i)}\)</span> of <span class="math notranslate nohighlight">\(Q_t\)</span>, it then calculates the percent change</p>
+<div class="math notranslate nohighlight">
+\[d_i = \frac{|Q_t^{(i)} - Q_{t-1}^{(i)}|}{10^{-8} + |Q_{t-1}^{(i)}|},\]</div>
+<p>where the constant <span class="math notranslate nohighlight">\(10^{-8}\)</span> is added in the denominator to avoid division by zero. It raises
+a warning if <span class="math notranslate nohighlight">\(\max_{i}d_i\)</span> is greater than some
+threshold in at least one of the final <span class="math notranslate nohighlight">\(r\)</span> iterations before the iterative
+model updates stop (or are early stopped), where
+the threshold and <span class="math notranslate nohighlight">\(r\)</span> are user-specified parameters. The threshold is
+defaulted to <span class="math notranslate nohighlight">\(0.005\)</span> and <span class="math notranslate nohighlight">\(r\)</span> is defaulted to <span class="math notranslate nohighlight">\(5\)</span>.</p>
+<p>For reasons similar to those introduced in the previous section, we again
+note that while Q value monitoring might flag potential non-convergence, it
+is neither necessary nor sufficient for non-convergence. Also, it only checks
+for potential non-convergence in the update of the Q function approximators
+rather than potential non-convergence in the neural network training.</p>
+</section>
+<section id="mitigating-non-convergence">
+<h3>Mitigating Non-convergence<a class="headerlink" href="#mitigating-non-convergence" title="Link to this heading"></a></h3>
+<p>To reduce the likelihood of non-convergence in neural network training, users might
+try increasing the maximum number of training epochs, adjusting the learning rate,
+or increasing the size of the training data. To reduce the likelihood of
+non-convergence in the update of the Q function approximators, users might try
+increasing the maximum number of FQI/FQE iterations or ensuring the training data
+covers a sufficiently large portion of the state and action spaces.</p>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="example_workflows.html" class="btn btn-neutral float-left" title="Example Workflows" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../interface/index.html" class="btn btn-neutral float-right" title="Interface" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, The CFRL Team.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
