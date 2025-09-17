@@ -19,7 +19,7 @@
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="FAQ" href="faq.html" />
+    <link rel="next" title="Computing Times" href="computing_times.html" />
     <link rel="prev" title="CFRL documentation" href="../index.html" /> 
 </head>
 
@@ -46,11 +46,15 @@
 <ul class="current">
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Getting Started</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#installation">Installation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#a-brief-introduction-to-counterfactual-fairness">A Brief Introduction to Counterfactual Fairness</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#a-brief-introduction-to-counterfactual-fairness">A Brief Introduction to Counterfactual Fairness</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#example-college-admissions">Example: College Admissions</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="#key-functionalities">Key Functionalities</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#high-level-design">High-level Design</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="computing_times.html">Computing Times</a></li>
 <li class="toctree-l1"><a class="reference internal" href="faq.html">FAQ</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Inputs and Outputs</span></p>
@@ -62,6 +66,7 @@
 <p class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../tutorials/example_workflows.html">Example Workflows</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/common_issues.html">Common Issues</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Interface</span></p>
 <ul>
@@ -121,10 +126,31 @@ views the observed states and rewards as biased proxies of the (unobserved) true
 and rewards, where the bias is often a result of the observed sensitive attribute. Thus, to ensure
 counterfactual fairness, we want the policy to be based on the true underlying states and rewards
 rather than their biased proxies.</p>
-<p>We refer interested readers to <a class="reference external" href="https://arxiv.org/abs/1703.06856">Kusner et al. (2017)</a> for a detailed
+<p>Below, we provide an example to illustrate the intuition behind counterfactual fairness in the
+single-stage seting. We refer interested readers to
+<a class="reference external" href="https://arxiv.org/abs/1703.06856">Kusner et al. (2017)</a> for a detailed
 discussion of counterfactual fairness in the single-stage predictions setting, and to
 <a class="reference external" href="https://arxiv.org/abs/2501.06366">Wang et al. (2025)</a> for a detailed discussion of counterfactual
 fairness in the reinforcement learning setting.</p>
+<section id="example-college-admissions">
+<h3>Example: College Admissions<a class="headerlink" href="#example-college-admissions" title="Link to this heading"></a></h3>
+<img alt="../_images/cf_example.png" src="../_images/cf_example.png" />
+<p>Two candidates, A (female) and B (male), are applying for admission to a college.
+As shown in the table, A and B have the
+same level of talent and would have achieved the same SAT score had they been both female or
+both male. However, in reality, A achieved a lower SAT score than B due to structural
+discrimination faced by female students in her community.</p>
+<p>Suppose the college wants to select candidates with the highest talent.
+Since talent is unobserved, the college can only make decisions using observed
+metrics (i.e. the SAT score and pre-college school level). If the decision-making is
+fairness-blind, then it will prefer B over A because B has a higher SAT score. However,
+one can argue that this is unfair because A’s lower score is a result of discrimination
+rather than her lack of talent. On the other hand, counterfactual fairness would require
+the college to estimate B’s SAT score had he been a female and A’s SAT score had
+she been a male. If these estimates are accurate, then the college would see
+that both candidates should be equally talented because their SAT scores would be the same
+had both of them been female or both of them been male.</p>
+</section>
 </section>
 <section id="key-functionalities">
 <h2>Key Functionalities<a class="headerlink" href="#key-functionalities" title="Link to this heading"></a></h2>
@@ -185,7 +211,7 @@ evaluate the value and counterfactual fairness of the trained policy. See the
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="../index.html" class="btn btn-neutral float-left" title="CFRL documentation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="faq.html" class="btn btn-neutral float-right" title="FAQ" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="computing_times.html" class="btn btn-neutral float-right" title="Computing Times" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
