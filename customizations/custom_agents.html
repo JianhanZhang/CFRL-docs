@@ -6,7 +6,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Custom Agents &mdash; CFRL 0.1 documentation</title>
+  <title>Custom Agents &mdash; PyCFRL 0.1 documentation</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
       <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
 
@@ -19,7 +19,7 @@
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="The CFRL Team" href="../about_cfrl/the_cfrl_team.html" />
+    <link rel="next" title="Release Notes" href="../about_pycfrl/release_notes.html" />
     <link rel="prev" title="Custom Preprocessors" href="custom_preprocessors.html" /> 
 </head>
 
@@ -32,7 +32,7 @@
           
           
           <a href="../index.html" class="icon icon-home">
-            CFRL
+            PyCFRL
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
@@ -45,6 +45,7 @@
               <p class="caption" role="heading"><span class="caption-text">Introduction</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../introduction/getting_started.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../introduction/computing_times.html">Computing Times</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../introduction/faq.html">FAQ</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Inputs and Outputs</span></p>
@@ -56,6 +57,7 @@
 <p class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../tutorials/example_workflows.html">Example Workflows</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/common_issues.html">Common Issues</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Interface</span></p>
 <ul>
@@ -66,9 +68,9 @@
 <li class="toctree-l1"><a class="reference internal" href="custom_preprocessors.html">Custom Preprocessors</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Custom Agents</a></li>
 </ul>
-<p class="caption" role="heading"><span class="caption-text">About CFRL</span></p>
+<p class="caption" role="heading"><span class="caption-text">About PyCFRL</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../about_cfrl/the_cfrl_team.html">The CFRL Team</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../about_pycfrl/release_notes.html">Release Notes</a></li>
 </ul>
 
         </div>
@@ -77,7 +79,7 @@
 
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="../index.html">CFRL</a>
+          <a href="../index.html">PyCFRL</a>
       </nav>
 
       <div class="wy-nav-content">
@@ -98,9 +100,9 @@
   <section id="custom-agents">
 <h1>Custom Agents<a class="headerlink" href="#custom-agents" title="Link to this heading"></a></h1>
 <p>In addition to <code class="code docutils literal notranslate"><span class="pre">FQI</span></code>, users can also define custom decision-making agents and use them
-in CFRL. A custom decision-agent often represents a pre-specified decision rule (e.g. making
-decisions randomly) or implements another reinforcement learning algorithm not provided by CFRL.</p>
-<p>To ensure a custom agent is compatible with CFRL, it must inherit from the
+in PyCFRL. A custom decision-agent often represents a pre-specified decision rule (e.g. making
+decisions randomly) or implements another reinforcement learning algorithm not provided by PyCFRL.</p>
+<p>To ensure a custom agent is compatible with PyCFRL, it must inherit from the
 <code class="code docutils literal notranslate"><span class="pre">Agent</span></code> class provided by the <code class="code docutils literal notranslate"><span class="pre">agents</span></code> module. That is,</p>
 <ul class="simple">
 <li><p>The custom agent should be a subclass of <code class="code docutils literal notranslate"><span class="pre">Agent</span></code>.</p></li>
@@ -112,7 +114,7 @@ arguments. The input and output lists or arrays should also follow the same
 <code class="code docutils literal notranslate"><span class="pre">Preprocessor</span></code>.</p></li>
 </ul>
 <p>For example, though simple, the following <code class="code docutils literal notranslate"><span class="pre">RandomAgent</span></code> is a valid custom
-agent that will be compatible with CFRL.</p>
+agent that will be compatible with PyCFRL.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">RandomAgent</span><span class="p">(</span><span class="n">Agent</span><span class="p">):</span>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">p</span><span class="p">:</span> <span class="nb">int</span> <span class="o">|</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.5</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">p</span> <span class="o">=</span> <span class="n">p</span>
@@ -134,7 +136,7 @@ agent that will be compatible with CFRL.</p>
         <span class="k">return</span> <span class="n">actions</span>
 </pre></div>
 </div>
-<p>On the other hand, the following agent will not be compatible with CFRL
+<p>On the other hand, the following agent will not be compatible with PyCFRL
 because its <code class="code docutils literal notranslate"><span class="pre">act()</span></code> does not have <code class="code docutils literal notranslate"><span class="pre">uat</span></code> in its argument list.
 <code class="code docutils literal notranslate"><span class="pre">uat</span></code> should be included in the argument list here to ensure
 compatibility even though it is not used in the function.</p>
@@ -180,13 +182,13 @@ fairness metric.</p>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="custom_preprocessors.html" class="btn btn-neutral float-left" title="Custom Preprocessors" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="../about_cfrl/the_cfrl_team.html" class="btn btn-neutral float-right" title="The CFRL Team" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="../about_pycfrl/release_notes.html" class="btn btn-neutral float-right" title="Release Notes" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2025, The CFRL Team.</p>
+    <p>&#169; Copyright 2025, The PyCFRL Team.</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a

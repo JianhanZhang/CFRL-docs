@@ -6,7 +6,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Common Issues &mdash; CFRL 0.1 documentation</title>
+  <title>Common Issues &mdash; PyCFRL 0.1 documentation</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
       <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
 
@@ -33,7 +33,7 @@
           
           
           <a href="../index.html" class="icon icon-home">
-            CFRL
+            PyCFRL
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
@@ -78,9 +78,9 @@
 <li class="toctree-l1"><a class="reference internal" href="../customizations/custom_preprocessors.html">Custom Preprocessors</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../customizations/custom_agents.html">Custom Agents</a></li>
 </ul>
-<p class="caption" role="heading"><span class="caption-text">About CFRL</span></p>
+<p class="caption" role="heading"><span class="caption-text">About PyCFRL</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../about_cfrl/the_cfrl_team.html">The CFRL Team</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../about_pycfrl/release_notes.html">Release Notes</a></li>
 </ul>
 
         </div>
@@ -89,7 +89,7 @@
 
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="../index.html">CFRL</a>
+          <a href="../index.html">PyCFRL</a>
       </nav>
 
       <div class="wy-nav-content">
@@ -109,20 +109,20 @@
              
   <section id="common-issues">
 <h1>Common Issues<a class="headerlink" href="#common-issues" title="Link to this heading"></a></h1>
-<p>This section introduces some common issues in CFRL and discusses how
+<p>This section introduces some common issues in PyCFRL and discusses how
 users might deal with these issues.</p>
 <section id="non-convergence">
 <h2>Non-convergence<a class="headerlink" href="#non-convergence" title="Link to this heading"></a></h2>
 <p>Non-convergence happens when the model fails to converge
-at the end of model training. In CFRL, non-convergence can arise when</p>
+at the end of model training. In PyCFRL, non-convergence can arise when</p>
 <ol class="arabic simple">
 <li><p>Training the <code class="code docutils literal notranslate"><span class="pre">SequentialPreprocessor</span></code>.</p></li>
 <li><p>Training the <code class="code docutils literal notranslate"><span class="pre">SimulatedEnvironment</span></code>.</p></li>
 <li><p>Training the <code class="code docutils literal notranslate"><span class="pre">FQI</span></code>.</p></li>
 <li><p>Training the <code class="code docutils literal notranslate"><span class="pre">FQE</span></code> in <code class="code docutils literal notranslate"><span class="pre">evaluate_reward_through_fqe()</span></code>.</p></li>
 </ol>
-<p>In theory, non-convergence might lead the models in CFRL to produce
-inaccurate outputs. In simulation studies, the models in CFRL often perform
+<p>In theory, non-convergence might lead the models in PyCFRL to produce
+inaccurate outputs. In simulation studies, the models in PyCFRL often perform
 well despite potential non-convergence, though occasionally non-convergence
 does result in notably suboptimal outputs.</p>
 <section id="sources-of-non-convergence">
@@ -159,7 +159,7 @@ converge.</p>
 </section>
 <section id="checking-for-neural-network-non-convergence-using-loss-monitoring">
 <h3>Checking for Neural Network Non-convergence Using Loss Monitoring<a class="headerlink" href="#checking-for-neural-network-non-convergence-using-loss-monitoring" title="Link to this heading"></a></h3>
-<p>CFRL provides a simple loss monitoring tool that can check for potential non-convergence
+<p>PyCFRL provides a simple loss monitoring tool that can check for potential non-convergence
 in the training of neural networks in <code class="code docutils literal notranslate"><span class="pre">SequentialPreprocessor</span></code>,
 <code class="code docutils literal notranslate"><span class="pre">SimulatedEnvironment</span></code>, <code class="code docutils literal notranslate"><span class="pre">FQI</span></code>, and <code class="code docutils literal notranslate"><span class="pre">FQE</span></code>. This tool can
 be enabled by setting <code class="code docutils literal notranslate"><span class="pre">is_loss_monitored=True</span></code> in
@@ -186,7 +186,7 @@ rather than potential non-convergence in the update of the Q function approximat
 </section>
 <section id="checking-for-approximated-q-function-non-convergence-using-q-value-monitoring">
 <h3>Checking for Approximated Q Function Non-convergence Using Q Value Monitoring<a class="headerlink" href="#checking-for-approximated-q-function-non-convergence-using-q-value-monitoring" title="Link to this heading"></a></h3>
-<p>CFRL also provides a simple Q value monitoring tool that can check for potential non-convergence
+<p>PyCFRL also provides a simple Q value monitoring tool that can check for potential non-convergence
 in the training of the approximated Q function in <code class="code docutils literal notranslate"><span class="pre">FQI</span></code> and <code class="code docutils literal notranslate"><span class="pre">FQE</span></code>.
 This tool can be enabled by setting <code class="code docutils literal notranslate"><span class="pre">is_q_monitored=True</span></code> in
 <code class="code docutils literal notranslate"><span class="pre">evaluate_reward_through_fqe()</span></code> and in the constructors of <code class="code docutils literal notranslate"><span class="pre">FQI</span></code>
@@ -232,7 +232,7 @@ covers a sufficiently large portion of the state and action spaces.</p>
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2025, The CFRL Team.</p>
+    <p>&#169; Copyright 2025, The PyCFRL Team.</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a

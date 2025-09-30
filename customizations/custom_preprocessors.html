@@ -6,7 +6,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Custom Preprocessors &mdash; CFRL 0.1 documentation</title>
+  <title>Custom Preprocessors &mdash; PyCFRL 0.1 documentation</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
       <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
 
@@ -32,7 +32,7 @@
           
           
           <a href="../index.html" class="icon icon-home">
-            CFRL
+            PyCFRL
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
@@ -45,6 +45,7 @@
               <p class="caption" role="heading"><span class="caption-text">Introduction</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../introduction/getting_started.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../introduction/computing_times.html">Computing Times</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../introduction/faq.html">FAQ</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Inputs and Outputs</span></p>
@@ -56,6 +57,7 @@
 <p class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../tutorials/example_workflows.html">Example Workflows</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/common_issues.html">Common Issues</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Interface</span></p>
 <ul>
@@ -66,9 +68,9 @@
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Custom Preprocessors</a></li>
 <li class="toctree-l1"><a class="reference internal" href="custom_agents.html">Custom Agents</a></li>
 </ul>
-<p class="caption" role="heading"><span class="caption-text">About CFRL</span></p>
+<p class="caption" role="heading"><span class="caption-text">About PyCFRL</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../about_cfrl/the_cfrl_team.html">The CFRL Team</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../about_pycfrl/release_notes.html">Release Notes</a></li>
 </ul>
 
         </div>
@@ -77,7 +79,7 @@
 
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="../index.html">CFRL</a>
+          <a href="../index.html">PyCFRL</a>
       </nav>
 
       <div class="wy-nav-content">
@@ -98,8 +100,8 @@
   <section id="custom-preprocessors">
 <span id="id1"></span><h1>Custom Preprocessors<a class="headerlink" href="#custom-preprocessors" title="Link to this heading"></a></h1>
 <p>In addition to <code class="code docutils literal notranslate"><span class="pre">SequentialPreprocessor</span></code>, users can also define custom preprocessors and use them
-in CFRL.</p>
-<p>To ensure a custom preprocessor is compatible with CFRL, it must inherit from the
+in PyCFRL.</p>
+<p>To ensure a custom preprocessor is compatible with PyCFRL, it must inherit from the
 <code class="code docutils literal notranslate"><span class="pre">Preprocessor</span></code> class provided by the <code class="code docutils literal notranslate"><span class="pre">preprocessor</span></code> module. That is,</p>
 <ul class="simple">
 <li><p>The custom preprocessor should be a subclass of <code class="code docutils literal notranslate"><span class="pre">Preprocessor</span></code>.</p></li>
@@ -118,7 +120,7 @@ otherwise. <code class="code docutils literal notranslate"><span class="pre">pre
 and two arrays otherwise.</p></li>
 </ul>
 <p>For example, though simple, the following <code class="code docutils literal notranslate"><span class="pre">ConcatenatePreprocessor</span></code> is a valid custom
-preprocessor that will be compatible with CFRL.</p>
+preprocessor that will be compatible with PyCFRL.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">ConcatenatePreprocessor</span><span class="p">(</span><span class="n">Preprocessor</span><span class="p">):</span>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="k">pass</span>
@@ -206,7 +208,7 @@ preprocessor that will be compatible with CFRL.</p>
             <span class="k">return</span> <span class="n">xs_tilde</span>
 </pre></div>
 </div>
-<p>On the other hand, the following preprocessor will not be compatible with CFRL
+<p>On the other hand, the following preprocessor will not be compatible with PyCFRL
 because its <code class="code docutils literal notranslate"><span class="pre">preprocess_single_step()</span></code> does not have <code class="code docutils literal notranslate"><span class="pre">xtm1</span></code> and
 <code class="code docutils literal notranslate"><span class="pre">atm1</span></code> in its argument list and its <code class="code docutils literal notranslate"><span class="pre">preprocess_multiple_steps()</span></code>
 always returns only one array.</p>
@@ -302,7 +304,7 @@ an <code class="code docutils literal notranslate"><span class="pre">FQI</span><
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2025, The CFRL Team.</p>
+    <p>&#169; Copyright 2025, The PyCFRL Team.</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a

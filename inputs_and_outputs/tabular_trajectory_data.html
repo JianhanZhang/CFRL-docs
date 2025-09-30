@@ -6,7 +6,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Tabular Trajectory Data &mdash; CFRL 0.1 documentation</title>
+  <title>Tabular Trajectory Data &mdash; PyCFRL 0.1 documentation</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
       <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
 
@@ -33,7 +33,7 @@
           
           
           <a href="../index.html" class="icon icon-home">
-            CFRL
+            PyCFRL
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
@@ -46,6 +46,7 @@
               <p class="caption" role="heading"><span class="caption-text">Introduction</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../introduction/getting_started.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../introduction/computing_times.html">Computing Times</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../introduction/faq.html">FAQ</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Inputs and Outputs</span></p>
@@ -57,6 +58,7 @@
 <p class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../tutorials/example_workflows.html">Example Workflows</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/common_issues.html">Common Issues</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Interface</span></p>
 <ul>
@@ -67,6 +69,10 @@
 <li class="toctree-l1"><a class="reference internal" href="../customizations/custom_preprocessors.html">Custom Preprocessors</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../customizations/custom_agents.html">Custom Agents</a></li>
 </ul>
+<p class="caption" role="heading"><span class="caption-text">About PyCFRL</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../about_pycfrl/release_notes.html">Release Notes</a></li>
+</ul>
 
         </div>
       </div>
@@ -74,7 +80,7 @@
 
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="../index.html">CFRL</a>
+          <a href="../index.html">PyCFRL</a>
       </nav>
 
       <div class="wy-nav-content">
@@ -95,7 +101,7 @@
   <section id="tabular-trajectory-data">
 <span id="id1"></span><h1>Tabular Trajectory Data<a class="headerlink" href="#tabular-trajectory-data" title="Link to this heading"></a></h1>
 <p>As long as the offline trajectory data satisfies the <a class="reference internal" href="data_requirements.html#data-requirements"><span class="std std-ref">data requirements</span></a>, it
-can be passed into CFRL. The trajectory inputs and outputs of CFRL functions and classes are in the
+can be passed into PyCFRL. The trajectory inputs and outputs of PyCFRL functions and classes are in the
 format of <a class="reference internal" href="trajectory_arrays.html#trajectory-arrays"><span class="std std-ref">Trajectory Arrays</span></a>. However, in the real world, the trajectory
 data is often stored in a tabular format rather than in Trajectory Arrays. To address this, the
 <code class="code docutils literal notranslate"><span class="pre">reader</span></code> module provides the <code class="code docutils literal notranslate"><span class="pre">read_trajectory_from_csv()</span></code> and
@@ -301,7 +307,7 @@ steps in this column start from 1.</p>
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2025, The CFRL Team.</p>
+    <p>&#169; Copyright 2025, The PyCFRL Team.</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a

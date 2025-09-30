@@ -6,7 +6,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Trajectory Arrays &mdash; CFRL 0.1 documentation</title>
+  <title>Trajectory Arrays &mdash; PyCFRL 0.1 documentation</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
       <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
 
@@ -33,7 +33,7 @@
           
           
           <a href="../index.html" class="icon icon-home">
-            CFRL
+            PyCFRL
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
@@ -46,6 +46,7 @@
               <p class="caption" role="heading"><span class="caption-text">Introduction</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../introduction/getting_started.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../introduction/computing_times.html">Computing Times</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../introduction/faq.html">FAQ</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Inputs and Outputs</span></p>
@@ -66,6 +67,7 @@
 <p class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../tutorials/example_workflows.html">Example Workflows</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/common_issues.html">Common Issues</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Interface</span></p>
 <ul>
@@ -76,6 +78,10 @@
 <li class="toctree-l1"><a class="reference internal" href="../customizations/custom_preprocessors.html">Custom Preprocessors</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../customizations/custom_agents.html">Custom Agents</a></li>
 </ul>
+<p class="caption" role="heading"><span class="caption-text">About PyCFRL</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../about_pycfrl/release_notes.html">Release Notes</a></li>
+</ul>
 
         </div>
       </div>
@@ -83,7 +89,7 @@
 
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="../index.html">CFRL</a>
+          <a href="../index.html">PyCFRL</a>
       </nav>
 
       <div class="wy-nav-content">
@@ -103,16 +109,16 @@
              
   <section id="trajectory-arrays">
 <span id="id1"></span><h1>Trajectory Arrays<a class="headerlink" href="#trajectory-arrays" title="Link to this heading"></a></h1>
-<p>In CFRL, a trajectory refers to the set of collected observed tuples
+<p>In PyCFRL, a trajectory refers to the set of collected observed tuples
 <span class="math notranslate nohighlight">\(\{(z_i, s_{i0}, a_{i0}, r_{i0}, s_{i1}, \dots, s_{i,T-1}, a_{i,T-1}, r_{i,T-1}, s_{iT}): i=1,\dots,N\}\)</span>
 describing the sensitive attribute, state, action, and reward of each individual (or subject) at each
 time step. Each <span class="math notranslate nohighlight">\(t=0,\dots,T\)</span> is called a time step, and the observed tuple
 <span class="math notranslate nohighlight">\((s_{it}, a_{it}, r_{it}, s_{i,t+1})\)</span> is called the transition for individual <span class="math notranslate nohighlight">\(i\)</span> at time
 step <span class="math notranslate nohighlight">\(t\)</span>. Let <span class="math notranslate nohighlight">\(N\)</span> be the total number of individuals and <span class="math notranslate nohighlight">\(T\)</span> be the total number of
 transitions of each individual.</p>
-<p>This section introduces Trajectory Arrays, which is how trajectories are represented in CFRL.
+<p>This section introduces Trajectory Arrays, which is how trajectories are represented in PyCFRL.
 Any trajectory satisfying the <a class="reference internal" href="data_requirements.html#data-requirements"><span class="std std-ref">data requirements</span></a> can be represented by
-Trajectory Arrays. The trajectory inputs and outputs of CFRL functions and classes are all in the
+Trajectory Arrays. The trajectory inputs and outputs of PyCFRL functions and classes are all in the
 form of Trajectory Arrays. To convert trajectory data from a tabular format to Trajectory Arrays or
 from Trajectory Arrays to a tabular format, see <a class="reference internal" href="tabular_trajectory_data.html#tabular-trajectory-data"><span class="std std-ref">Tabular Trajectory Data</span></a>.</p>
 <p>The sensitive attributes, states, actions, and rewards in a trajectory are represented by
@@ -296,7 +302,7 @@ of this trajectory at all time steps can be represented in the Full-trajectory R
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2025, The CFRL Team.</p>
+    <p>&#169; Copyright 2025, The PyCFRL Team.</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a

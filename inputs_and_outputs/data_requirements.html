@@ -6,7 +6,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Data Requirements &mdash; CFRL 0.1 documentation</title>
+  <title>Data Requirements &mdash; PyCFRL 0.1 documentation</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
       <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
 
@@ -33,7 +33,7 @@
           
           
           <a href="../index.html" class="icon icon-home">
-            CFRL
+            PyCFRL
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
@@ -46,6 +46,7 @@
               <p class="caption" role="heading"><span class="caption-text">Introduction</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../introduction/getting_started.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../introduction/computing_times.html">Computing Times</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../introduction/faq.html">FAQ</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Inputs and Outputs</span></p>
@@ -57,6 +58,7 @@
 <p class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../tutorials/example_workflows.html">Example Workflows</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/common_issues.html">Common Issues</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Interface</span></p>
 <ul>
@@ -67,6 +69,10 @@
 <li class="toctree-l1"><a class="reference internal" href="../customizations/custom_preprocessors.html">Custom Preprocessors</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../customizations/custom_agents.html">Custom Agents</a></li>
 </ul>
+<p class="caption" role="heading"><span class="caption-text">About PyCFRL</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../about_pycfrl/release_notes.html">Release Notes</a></li>
+</ul>
 
         </div>
       </div>
@@ -74,7 +80,7 @@
 
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="../index.html">CFRL</a>
+          <a href="../index.html">PyCFRL</a>
       </nav>
 
       <div class="wy-nav-content">
@@ -94,14 +100,14 @@
              
   <section id="data-requirements">
 <span id="id1"></span><h1>Data Requirements<a class="headerlink" href="#data-requirements" title="Link to this heading"></a></h1>
-<p>For CFRL to work properly, the offline trajectory data should satisfy some requirements, which are
+<p>For PyCFRL to work properly, the offline trajectory data should satisfy some requirements, which are
 summarized below:</p>
 <p>1. <strong>Sensitive Attribute:</strong> The sensitive attribute can be either univariate or multivariate. Each
 component of the sensitive attribute vector can also be either numerical or categorical. If a component
 of the sensitive attribute is categorical, it should either be reparametrized as discrete numerical
 levels (e.g. 0=”Race A”, 1=”Race B”) or one-hot encoded manually.</p>
 <p>2. <strong>State Variable:</strong> The state variable can either be univariate or multivariate. Each component of
-the state vector must be numerical because CFRL involves taking means and standard deviations of the
+the state vector must be numerical because PyCFRL involves taking means and standard deviations of the
 state variable.</p>
 <p>3. <strong>Action:</strong> The action must be univariate. It should be either categorical or discrete numerical.
 In either case, the actions should be coded as <span class="math notranslate nohighlight">\(0, 1, 2, \dots, N_a\)</span>, where <span class="math notranslate nohighlight">\(N_a\)</span> is the
@@ -130,7 +136,7 @@ individual’s trajectory to the same length, but this could be inappropriate in
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2025, The CFRL Team.</p>
+    <p>&#169; Copyright 2025, The PyCFRL Team.</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a

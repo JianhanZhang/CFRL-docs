@@ -6,7 +6,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Getting Started &mdash; CFRL 0.1 documentation</title>
+  <title>Getting Started &mdash; PyCFRL 0.1 documentation</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
       <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
 
@@ -21,7 +21,7 @@
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Computing Times" href="computing_times.html" />
-    <link rel="prev" title="CFRL documentation" href="../index.html" /> 
+    <link rel="prev" title="PyCFRL documentation" href="../index.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -33,7 +33,7 @@
           
           
           <a href="../index.html" class="icon icon-home">
-            CFRL
+            PyCFRL
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
@@ -78,10 +78,9 @@
 <li class="toctree-l1"><a class="reference internal" href="../customizations/custom_preprocessors.html">Custom Preprocessors</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../customizations/custom_agents.html">Custom Agents</a></li>
 </ul>
-<p class="caption" role="heading"><span class="caption-text">About CFRL</span></p>
+<p class="caption" role="heading"><span class="caption-text">About PyCFRL</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../about_cfrl/the_cfrl_team.html">The CFRL Team</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../about_cfrl/release_notes.html">Release Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../about_pycfrl/release_notes.html">Release Notes</a></li>
 </ul>
 
         </div>
@@ -90,7 +89,7 @@
 
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="../index.html">CFRL</a>
+          <a href="../index.html">PyCFRL</a>
       </nav>
 
       <div class="wy-nav-content">
@@ -115,10 +114,6 @@
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>pycfrl
 </pre></div>
 </div>
-<p>Please note that <code class="code docutils literal notranslate"><span class="pre">CFRL</span></code> should be installed as <code class="code docutils literal notranslate"><span class="pre">pycfrl</span></code>
-instead of <code class="code docutils literal notranslate"><span class="pre">cfrl</span></code>. Running <code class="code docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">cfrl</span></code> will likely
-install a library that is different from the <code class="code docutils literal notranslate"><span class="pre">CFRL</span></code> library
-described in this documentation.</p>
 </section>
 <section id="a-brief-introduction-to-counterfactual-fairness">
 <h2>A Brief Introduction to Counterfactual Fairness<a class="headerlink" href="#a-brief-introduction-to-counterfactual-fairness" title="Link to this heading"></a></h2>
@@ -171,9 +166,9 @@ statistical associations and parities.</p>
 </section>
 <section id="key-functionalities">
 <h2>Key Functionalities<a class="headerlink" href="#key-functionalities" title="Link to this heading"></a></h2>
-<p>CFRL is designed with two main functionalities:</p>
+<p>PyCFRL is designed with two main functionalities:</p>
 <p>1. Provide algorithms that enforce counterfactual fairness for reinforcement learning policies.
-The current version of CFRL implements the sequential data preprocessing algorithm proposed by
+The current version of PyCFRL implements the sequential data preprocessing algorithm proposed by
 <a class="reference external" href="https://arxiv.org/abs/2501.06366">Wang et al. (2025)</a> for offline reinforcement learning. The
 algorithm takes in an offline RL trajectory and outputs a preprocessed, bias-free trajectory. The
 preprocessed trajectory can then be passed to any existing offline reinforcement learning algorithms
@@ -197,7 +192,7 @@ counterfactual fairness metric.</p>
 </thead>
 <tbody>
 <tr class="row-even"><td><p><code class="code docutils literal notranslate"><span class="pre">reader</span></code></p></td>
-<td><p>Implements functions that read tabular trajectory data from either a <code class="code docutils literal notranslate"><span class="pre">.csv</span></code> file or a <code class="code docutils literal notranslate"><span class="pre">pandas.DataFrame</span></code> into a format required by <code class="code docutils literal notranslate"><span class="pre">CFRL</span></code> (<a class="reference internal" href="../inputs_and_outputs/trajectory_arrays.html#trajectory-arrays"><span class="std std-ref">Trajectory Arrays</span></a>). Also implements functions that export trajectory data to either a <code class="code docutils literal notranslate"><span class="pre">.csv</span></code> file or a <code class="code docutils literal notranslate"><span class="pre">pandas.DataFrame</span></code>.</p></td>
+<td><p>Implements functions that read tabular trajectory data from either a <code class="code docutils literal notranslate"><span class="pre">.csv</span></code> file or a <code class="code docutils literal notranslate"><span class="pre">pandas.DataFrame</span></code> into a format required by <code class="code docutils literal notranslate"><span class="pre">PyCFRL</span></code> (<a class="reference internal" href="../inputs_and_outputs/trajectory_arrays.html#trajectory-arrays"><span class="std std-ref">Trajectory Arrays</span></a>). Also implements functions that export trajectory data to either a <code class="code docutils literal notranslate"><span class="pre">.csv</span></code> file or a <code class="code docutils literal notranslate"><span class="pre">pandas.DataFrame</span></code>.</p></td>
 </tr>
 <tr class="row-odd"><td><p><code class="code docutils literal notranslate"><span class="pre">preprocessor</span></code></p></td>
 <td><p>Implements the data preprocessing algorithm introduced in Wang et al. (2025).</p></td>
@@ -214,7 +209,7 @@ counterfactual fairness metric.</p>
 </tbody>
 </table>
 <img alt="../_images/workflow_chart_cropped.png" src="../_images/workflow_chart_cropped.png" />
-<p>A general CFRL workflow is as follows: First, simulate a trajectory using <code class="code docutils literal notranslate"><span class="pre">environment</span></code> or read
+<p>A general PyCFRL workflow is as follows: First, simulate a trajectory using <code class="code docutils literal notranslate"><span class="pre">environment</span></code> or read
 in a trajectory using <code class="code docutils literal notranslate"><span class="pre">reader</span></code>. Then, train a preprocessor using <code class="code docutils literal notranslate"><span class="pre">preprocessor</span></code> to remove
 the bias in the trajectory data. After that, pass the preprocessed trajectory into the FQI algorithm in
 <code class="code docutils literal notranslate"><span class="pre">agents</span></code> to learn a counterfactually fair policy. Finally, use functions in <code class="code docutils literal notranslate"><span class="pre">evaluation</span></code> to
@@ -227,14 +222,14 @@ evaluate the value and counterfactual fairness of the trained policy. See the
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="../index.html" class="btn btn-neutral float-left" title="CFRL documentation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../index.html" class="btn btn-neutral float-left" title="PyCFRL documentation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
         <a href="computing_times.html" class="btn btn-neutral float-right" title="Computing Times" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2025, The CFRL Team.</p>
+    <p>&#169; Copyright 2025, The PyCFRL Team.</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
