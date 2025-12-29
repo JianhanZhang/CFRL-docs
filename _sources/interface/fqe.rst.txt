@@ -4,7 +4,7 @@ This module implements the fitted Q evaluation algorithm for offline policy eval
 
 .. code:: python
 
-   from pycfrl import fqe
+   from pycfrl import fqe.fqe
 
 .. automodule:: pycfrl.fqe
    :members:

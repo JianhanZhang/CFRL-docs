@@ -16,6 +16,7 @@
       <script src="../_static/documentation_options.js?v=2709fde1"></script>
       <script src="../_static/doctools.js?v=9bcbadda"></script>
       <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -111,12 +112,51 @@
 <div class="toctree-wrapper compound">
 <p class="caption" role="heading"><span class="caption-text">Modules</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="reader.html">Reader</a></li>
-<li class="toctree-l1"><a class="reference internal" href="preprocessor.html">Preprocessor</a></li>
-<li class="toctree-l1"><a class="reference internal" href="environment.html">Environment</a></li>
-<li class="toctree-l1"><a class="reference internal" href="agents.html">Agents</a></li>
+<li class="toctree-l1"><a class="reference internal" href="reader.html">Reader</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="reader.html#pycfrl.reader.reader.convert_trajectory_to_dataframe"><code class="docutils literal notranslate"><span class="pre">convert_trajectory_to_dataframe()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="reader.html#pycfrl.reader.reader.export_trajectory_to_csv"><code class="docutils literal notranslate"><span class="pre">export_trajectory_to_csv()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="reader.html#pycfrl.reader.reader.read_trajectory_from_csv"><code class="docutils literal notranslate"><span class="pre">read_trajectory_from_csv()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="reader.html#pycfrl.reader.reader.read_trajectory_from_dataframe"><code class="docutils literal notranslate"><span class="pre">read_trajectory_from_dataframe()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="preprocessor.html">Preprocessor</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="preprocessor.html#pycfrl.preprocessor.preprocessor.Preprocessor"><code class="docutils literal notranslate"><span class="pre">Preprocessor</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="preprocessor.html#pycfrl.preprocessor.preprocessor.SequentialPreprocessor"><code class="docutils literal notranslate"><span class="pre">SequentialPreprocessor</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="environment.html">Environment</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="environment.html#pycfrl.environment.environment.SimulatedEnvironment"><code class="docutils literal notranslate"><span class="pre">SimulatedEnvironment</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="environment.html#pycfrl.environment.environment.SyntheticEnvironment"><code class="docutils literal notranslate"><span class="pre">SyntheticEnvironment</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="environment.html#pycfrl.environment.environment.estimate_counterfactual_trajectories_from_data"><code class="docutils literal notranslate"><span class="pre">estimate_counterfactual_trajectories_from_data()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="environment.html#pycfrl.environment.environment.f_errors_rewards_default"><code class="docutils literal notranslate"><span class="pre">f_errors_rewards_default()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="environment.html#pycfrl.environment.environment.f_errors_states_default"><code class="docutils literal notranslate"><span class="pre">f_errors_states_default()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="environment.html#pycfrl.environment.environment.f_rt_default"><code class="docutils literal notranslate"><span class="pre">f_rt_default()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="environment.html#pycfrl.environment.environment.f_ua_default"><code class="docutils literal notranslate"><span class="pre">f_ua_default()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="environment.html#pycfrl.environment.environment.f_ur_default"><code class="docutils literal notranslate"><span class="pre">f_ur_default()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="environment.html#pycfrl.environment.environment.f_ux_default"><code class="docutils literal notranslate"><span class="pre">f_ux_default()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="environment.html#pycfrl.environment.environment.f_x0_default"><code class="docutils literal notranslate"><span class="pre">f_x0_default()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="environment.html#pycfrl.environment.environment.f_xt_default"><code class="docutils literal notranslate"><span class="pre">f_xt_default()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="environment.html#pycfrl.environment.environment.sample_counterfactual_trajectories"><code class="docutils literal notranslate"><span class="pre">sample_counterfactual_trajectories()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="environment.html#pycfrl.environment.environment.sample_simulated_env_trajectory"><code class="docutils literal notranslate"><span class="pre">sample_simulated_env_trajectory()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="environment.html#pycfrl.environment.environment.sample_trajectory"><code class="docutils literal notranslate"><span class="pre">sample_trajectory()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="agents.html">Agents</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="agents.html#pycfrl.agents.agents.Agent"><code class="docutils literal notranslate"><span class="pre">Agent</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="agents.html#pycfrl.agents.agents.FQI"><code class="docutils literal notranslate"><span class="pre">FQI</span></code></a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="fqe.html">FQE</a></li>
-<li class="toctree-l1"><a class="reference internal" href="evaluation.html">Evaluation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="evaluation.html">Evaluation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="evaluation.html#pycfrl.evaluation.evaluation.evaluate_fairness_through_model"><code class="docutils literal notranslate"><span class="pre">evaluate_fairness_through_model()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="evaluation.html#pycfrl.evaluation.evaluation.evaluate_fairness_through_simulation"><code class="docutils literal notranslate"><span class="pre">evaluate_fairness_through_simulation()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="evaluation.html#pycfrl.evaluation.evaluation.evaluate_reward_through_fqe"><code class="docutils literal notranslate"><span class="pre">evaluate_reward_through_fqe()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="evaluation.html#pycfrl.evaluation.evaluation.evaluate_reward_through_simulation"><code class="docutils literal notranslate"><span class="pre">evaluate_reward_through_simulation()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="evaluation.html#pycfrl.evaluation.evaluation.f_ua_default"><code class="docutils literal notranslate"><span class="pre">f_ua_default()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="evaluation.html#pycfrl.evaluation.evaluation.f_ur_default"><code class="docutils literal notranslate"><span class="pre">f_ur_default()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="evaluation.html#pycfrl.evaluation.evaluation.f_ux_default"><code class="docutils literal notranslate"><span class="pre">f_ux_default()</span></code></a></li>
+</ul>
+</li>
 </ul>
 </div>
 </section>
