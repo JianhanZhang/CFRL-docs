@@ -76,7 +76,7 @@
 <li class="toctree-l1"><a class="reference internal" href="code_of_conduct.html">Code of Conduct</a></li>
 <li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Release Notes</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#to-be-released-soon">0.3.2 (to be released soon)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#released-05-30-2026">0.3.2 (released 05/30/2026)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#released-05-27-2026">0.3.1 (released 05/27/2026)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#released-09-29-2025">0.3.0 (released 09/29/2025)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#id1">0.2.0 (released 09/29/2025)</a></li>
@@ -112,8 +112,8 @@
              
   <section id="release-notes">
 <h1>Release Notes<a class="headerlink" href="#release-notes" title="Link to this heading"></a></h1>
-<section id="to-be-released-soon">
-<h2>0.3.2 (to be released soon)<a class="headerlink" href="#to-be-released-soon" title="Link to this heading"></a></h2>
+<section id="released-05-30-2026">
+<h2>0.3.2 (released 05/30/2026)<a class="headerlink" href="#released-05-30-2026" title="Link to this heading"></a></h2>
 <p>This release updates how the Bellman target is calculated during FQE training and evaluation.
 The previous versions calculates <span class="math notranslate nohighlight">\(target = r + \gamma \hat{Q}(s', a_{actual}^{'})\)</span>, where <span class="math notranslate nohighlight">\(a_{actual}^{'}\)</span> is the action actually chosen by the policy and <span class="math notranslate nohighlight">\(\hat{Q}\)</span> is the estimated Q function from the previous iteration.
 This release calculates <span class="math notranslate nohighlight">\(target = r + \sum_{a' \in \mathcal{A}} \gamma p(a'|s') \hat{Q}(s', a')\)</span>.</p>

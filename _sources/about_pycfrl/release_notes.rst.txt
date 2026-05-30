@@ -1,7 +1,7 @@
 Release Notes
 =======================
 
-0.3.2 (to be released soon)
+0.3.2 (released 05/30/2026)
 ^^^^^^^^^^^^^^^^^^^^^^^
 
 This release updates how the Bellman target is calculated during FQE training and evaluation. 
