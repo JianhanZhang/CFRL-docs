@@ -16,6 +16,7 @@
       <script src="../_static/documentation_options.js?v=e259d695"></script>
       <script src="../_static/doctools.js?v=9bcbadda"></script>
       <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -44,7 +45,7 @@
               <p class="caption" role="heading"><span class="caption-text">Introduction</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../introduction/getting_started.html">Getting Started</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../introduction/empirical_results.html">Empirical Results</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../introduction/empirical_results.html">Empirical Results (Synthetic Data)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../introduction/computing_times.html">Computing Times</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../introduction/faq.html">FAQ</a></li>
 </ul>
@@ -58,6 +59,7 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../tutorials/example_workflows.html">Example Workflows</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../tutorials/common_issues.html">Common Issues</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/runtime_warnings_and_errors.html">Runtime Warnings and Errors</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Interface</span></p>
 <ul>
@@ -74,6 +76,7 @@
 <li class="toctree-l1"><a class="reference internal" href="code_of_conduct.html">Code of Conduct</a></li>
 <li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Release Notes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#to-be-released-soon">0.3.2 (to be released soon)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#released-05-27-2026">0.3.1 (released 05/27/2026)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#released-09-29-2025">0.3.0 (released 09/29/2025)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#id1">0.2.0 (released 09/29/2025)</a></li>
@@ -109,6 +112,19 @@
              
   <section id="release-notes">
 <h1>Release Notes<a class="headerlink" href="#release-notes" title="Link to this heading"></a></h1>
+<section id="to-be-released-soon">
+<h2>0.3.2 (to be released soon)<a class="headerlink" href="#to-be-released-soon" title="Link to this heading"></a></h2>
+<p>This release updates how the Bellman target is calculated during FQE training and evaluation.
+The previous versions calculates <span class="math notranslate nohighlight">\(target = r + \gamma \hat{Q}(s', a_{actual}^{'})\)</span>, where <span class="math notranslate nohighlight">\(a_{actual}^{'}\)</span> is the action actually chosen by the policy and <span class="math notranslate nohighlight">\(\hat{Q}\)</span> is the estimated Q function from the previous iteration.
+This release calculates <span class="math notranslate nohighlight">\(target = r + \sum_{a' \in \mathcal{A}} \gamma p(a'|s') \hat{Q}(s', a')\)</span>.</p>
+<p>Also, the previous version only uses time steps <span class="math notranslate nohighlight">\(t \geq 1\)</span> for FQE evaluation, while this release now uses all time steps <span class="math notranslate nohighlight">\(t \geq 0\)</span> for FQE evaluation.</p>
+<p>To accomodate the above changes, a new parameter <code class="code docutils literal notranslate"><span class="pre">is_return_probs</span></code> is added to the <code class="code docutils literal notranslate"><span class="pre">act()</span></code> function in <code class="code docutils literal notranslate"><span class="pre">FQI</span></code> and the base class <code class="code docutils literal notranslate"><span class="pre">Agent</span></code>.
+When <code class="code docutils literal notranslate"><span class="pre">is_return_probs=True</span></code>, <code class="code docutils literal notranslate"><span class="pre">act()</span></code> will return an array of the probabilities of taking each valid action (instead of returning the actions that are actually taken).
+Under this release, all custom agents will need to also include the parameter <code class="code docutils literal notranslate"><span class="pre">is_return_probs</span></code> and return the probabilities when <code class="code docutils literal notranslate"><span class="pre">is_return_probs=True</span></code>.
+Please refer to the corresponding interface documentation for more detailed information about the new parameter and intended code behaviors.</p>
+<p><strong>Note:</strong> To use this new release, code written using earlier versions might need to be updated if they use custom agents.
+Existing code that do not use custom agents should still work as intended without modification.</p>
+</section>
 <section id="released-05-27-2026">
 <h2>0.3.1 (released 05/27/2026)<a class="headerlink" href="#released-05-27-2026" title="Link to this heading"></a></h2>
 <p>This release removes some import statements that import packages not needed
