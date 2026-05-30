@@ -10,8 +10,8 @@ Unstable Loss Warning
 
 When training :code:`SequentialPreprocessor`, :code:`SimulatedEnvironment`, :code:`FQI`, or :code:`FQE`, the following warning might be raised: :code:`The fluctuation in the loss is not small enough in at least one of the final [p] epochs during neural network training`.
 This warning is a result of loss monitoring, and it is triggered if the percent absolute change in the validation loss during neural network training is greater than some threshold in at least one of the final :math:`p` epochs before all training epochs are finished, where the threshold and :math:`p` are user-specified parameters.
-This warning flags potential neural network non-convergence based on the specified threshold and :math:`p`, though it does not directly detect true, theoretical convergence. 
-For example, when the validation loss plateaus without reaching the true minimum, loss monitoring will not raise warnings. 
+This warning flags potential neural network non-convergence based on the specified threshold and :math:`p`. 
+Note that, for example, when the validation loss plateaus without reaching the true minimum, loss monitoring will not raise warnings. 
 On the other hand, if the chosen threshold is too small, or :math:`p` is specified too large, a warning may occur even though the model has almost converged.
 Please see :ref:`Common Issues <common_issues>` for more information on non-convergence and loss monitoring.
 
@@ -25,8 +25,8 @@ Unstable Q Value Warning
 
 When training :code:`FQI` or :code:`FQE`, the following warning might be raised: :code:`The fluctuation in the Q values is not small enough in at least one of the final [r] iterations during FQI training` or :code:`The fluctuation in the Q values is not small enough in at least one of the final [r] iterations during FQE training`.
 This warning is a result of Q value monitoring, and it is triggered if the change in the Q value predicted by the estimated Q function in FQI or FQE is greater than some threshold in at least one of the final :math:`r` iterations before all training iterations are completed.
-This warning flags potential FQI/FQE non-convergence based on the specified threshold and :math:`r`, though it does not directly detect true, theoretical convergence. 
-For example, when the predicted Q value stabilizes at a point far from the true value, Q value monitoring will not raise warnings. 
+This warning flags potential FQI/FQE non-convergence based on the specified threshold and :math:`r`. 
+Note that, for example, when the predicted Q value stabilizes at a point far from the true value, Q value monitoring will not raise warnings. 
 On the other hand, if the chosen threshold is too small, or :math:`r` is specified too large, a warning may occur even though the estimated Q function is close to accurate.
 Please see :ref:`Common Issues <common_issues>` for more information on non-convergence and Q value monitoring.
 
